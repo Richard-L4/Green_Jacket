@@ -1,0 +1,148 @@
+html {
+    height: 100%;
+}
+
+body {
+    background: url('/static/images/amen-corne-the-masters.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: calc(100vh - 164px);
+    color: #555;
+    font-family: 'Lato';
+}
+
+/* from Bulma */
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.logo-font {
+    text-transform: uppercase;
+}
+
+.main-logo-link {
+    width: fit-content;
+}
+
+.my-custom-style {
+  background-color: #4a90e2; /* your custom color for delivery banner */
+  margin-bottom: 1.55rem;
+ 
+}
+
+main.container-fluid {
+    min-height: 83vh; /* Keeps footer at the bottom for who we are */
+}
+
+.home-title {
+    background: black;
+    color: white;
+    min-width: 260px;
+    padding: 20px;
+    text-align: center;
+}
+
+.shop-now-button {
+    background: black;
+    color: white;
+    min-width: 260px;
+}
+
+.btn-black {
+    background: black;
+    color: white;
+}
+
+.shop-now-button:hover,
+.shop-now-button:active,
+.shop-now-button:focus,
+.btn-black:hover,
+.btn-black:active,
+.btn-black:focus {
+    background: #222;
+    color: white;
+}
+
+.text-black {
+    color: #000 !important;
+}
+
+.border-black {
+    border: 1px solid black !important;
+}
+
+
+/* Footer styling */
+footer {
+    background: #4a90e2;
+    /* Let the body background show through */
+    padding: 0.625rem 0;
+    /* Add some spacing */
+    text-align: center;
+    height: 5.625rem;
+}
+
+
+#social-networks {
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    
+}
+
+#social-networks i {
+    font-size: 160%;
+    padding: 5%;
+}
+
+/* Specific platform colors */
+#social-networks .facebook i {
+    color: white;
+    /* Facebook blue */
+}
+
+#social-networks .twitter i {
+    color: white;
+    /* Twitter blue */
+}
+
+#social-networks .youtube i {
+    color: white;
+    /* YouTube red */
+}
+
+#social-networks .instagram i {
+    color: white;
+    /* Instagram orange */
+}
+
+
+/* -------------------------------- Media Queries */
+
+/* Slightly larger container on xl screens */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 80%;
+  }
+}
+
+/* fixed top navbar only on medium and up */
+@media (min-width: 992px) {
+    .fixed-top-desktop-only {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+    }
+
+    .header-container {
+        padding-top: 164px;
+    }
+}
