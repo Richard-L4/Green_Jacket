@@ -12,10 +12,12 @@
     {% endblock %}
 
     {% block extra_meta %}
-    <link rel="apple-touch-icon" sizes="180x180" href="static/favicon.ico/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="static/favicon.ico/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="static/favicon.ico/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon.ico/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon.ico/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon.ico/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon.ico/site.webmanifest' %}">
+
+
     {% endblock %}
 
     {% block corecss %}
@@ -83,7 +85,7 @@
                         <div class="dropdown-menu border-0" aria-labelledby="user-options">
                             {% if request.user.is_authenticated %}
                             {% if request.user.is_superuser %}
-                            <a href="" class="dropdown-item">Goods Management</a>
+                            <a href="" class="dropdown-item">Items Management</a>
                             {% endif %}
                             <a href="" class="dropdown-item">My Details</a>
                             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>

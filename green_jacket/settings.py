@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     'clubhouse',
+    'items',
 ]
 
 MIDDLEWARE = [
