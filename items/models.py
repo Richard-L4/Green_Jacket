@@ -40,6 +40,8 @@ class SavedItem(models.Model):
 
     class Meta:
         unique_together = ('user', 'item')
+        verbose_name = 'Saved Item'
+        verbose_name_plural = 'Saved Items' 
 
     def __str__(self):
         return f"{self.user.username} saved {self.item.name}"
