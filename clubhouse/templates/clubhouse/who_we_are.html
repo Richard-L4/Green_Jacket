@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col">
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<main class="container-fluid">
+<div class="container my-5">
+    <div class="row">
+        <!-- Left: Info Block -->
+        <div class="col-md-6 pe-md-4">
+            <div class="home-title">
+                <h3 class="about-header">About Masters Merchandise</h3>
+                <p class="about-text">
+                    Masters Merchandise offers classic Masters style merch in Augusta green.
+                    We pride ourselves on quality and tradition, bringing the spirit of the Masters
+                    to fans everywhere.
+                </p>
+
+                <h4 class="contact-header">Contact Information</h4>
+                <p class="contact-text">
+                    Address:<br>
+                    123 Augusta Ave,<br>
+                    Augusta, GA 30904<br><br>
+                    Email: <a href="mailto:info@mastersmerch.com" class="email-link">info@mastersmerch.com</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Right: Map Block -->
+        <div class="col-md-6">
+            <div class="home-title">
+                <h4 class="contact-header">Our Location</h4>
+                <div class="map-responsive">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3296.725922985505!2d-82.01605568478257!3d33.50382398077559!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f7b0b126a3eae1%3A0x30c39e6e58a49520!2sAugusta%2C%20GA!5e0!3m2!1sen!2sus!4v1685840277021!5m2!1sen!2sus"
+                        width="600" height="300" style="width: 100%; border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+{% endblock %}
