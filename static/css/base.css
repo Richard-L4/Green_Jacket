@@ -121,6 +121,31 @@ input[name='q']::placeholder {
     color: #aab7c4;
 }
 
+/* Modal backdrop covering the page */
+.custom-modal-backdrop {
+  position: fixed;
+  top: 240px;
+  left: 146px;
+  width: 80%;
+  height: 63%;
+  background-color: rgba(0, 0, 0, 0.6); /* dim background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+}
+
+/* Centered modal box */
+.custom-modal-form {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+
 /* ------------------------------- bootstrap toasts */
 
 .message-container {
