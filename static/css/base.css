@@ -83,6 +83,11 @@ body {
     background:  #2e3b4b !important;
 }
 
+/* product page to push footer down */
+.container-fluid {
+    min-height: 100vh;
+}
+
 .overlay {
 	height: 100%;
 	width: 100%;

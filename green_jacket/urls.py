@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', include('clubhouse.urls')),
+    path('items/', include('items.urls')),
 ]
 
 # Serve static files during development only (when DEBUG=True)
