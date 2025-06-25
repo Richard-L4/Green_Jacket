@@ -2,25 +2,26 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('save-form');
     if (!form) return;
 
-    const button = document.getElementById('save-button');
     const heartIcon = document.getElementById('heart-icon');
     const saveText = document.getElementById('save-text');
 
-    const url = form.dataset.url;
-    const csrfToken = form.dataset.csrf;
-
     form.addEventListener('submit', function (e) {
-        e.preventDefault();
+        e.preventDefault();  // Prevent full page reload
 
-        fetch(url, {
+        const formData = new FormData(form);
+        const action = form.getAttribute('action');
+
+        fetch(action, {
             method: 'POST',
+            body: formData,
             headers: {
-                'X-CSRFToken': csrfToken,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({})
+                'X-Requested-With': 'XMLHttpRequest'
+            }
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) throw new Error('Network error');
+            return response.json();
+        })
         .then(data => {
             if (data.saved) {
                 heartIcon.classList.remove('far');
@@ -32,6 +33,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 saveText.textContent = 'Save for Later';
             }
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => {
+            console.error('Error submitting form:', error);
+        });
     });
 });
+

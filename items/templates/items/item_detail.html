@@ -17,11 +17,11 @@
         <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
             <div class="image-container my-5">
                 {% if item.featured_image %}
-                <a href="{% url 'item_detail' item.id %}" target="_blank">
+                <a href="{% url 'item_image' item.id %}" target="_blank">
                     <img class="card-img-top img-fluid" src="{{ item.featured_image.url }}" alt="{{ item.name }}">
                 </a>
                 {% else %}
-                <a href="{% url 'item_detail' %}">
+                <a href="{% url 'item_image' %}">
                     <img class="card-img-top img-fluid" src="{% static 'images/default.jpg' %}" alt="{{ item.name }}">
                 </a>
                 {% endif %}
@@ -54,13 +54,16 @@
                 <p class="mt-3">{{ item.description }}</p>
 
                 <!-- Save for Later Button -->
-                <form id="save-form" data-url="{% url 'toggle_save_item' item.id %}" class="mb-3">
+                <form id="save-form" method="POST" action="{% url 'toggle_save_item' item.id %}" class="mb-3">
                     {% csrf_token %}
                     <button id="save-button" class="btn btn-outline-danger" type="submit" {% if not user.is_authenticated %}disabled{% endif %}>
                         <i id="heart-icon" class="{% if saved %}fas{% else %}far{% endif %} fa-heart"></i>
                         <span id="save-text">{% if saved %}Saved{% else %}Save for Later{% endif %}</span>
                     </button>
                 </form>
+
+
+
 
                 <!-- Add to Cart Form -->
                 <form class="form" action="" method="POST">
@@ -84,8 +87,7 @@
                             <div class="form-group w-50">
                                 <div class="input-group input-group-{{ item.id }}">
                                     <div class="input-group-prepend">
-                                        <button
-                                            type="button"
+                                        <button type="button"
                                             class="decrement-qty btn btn-black rounded-0 decrement-qty_{{ item.id }}"
                                             data-item_id="{{ item.id }}">
                                             <span class="icon"><i class="fas fa-minus"></i></span>
@@ -94,8 +96,7 @@
                                     <input class="form-control qty_input id_qty_{{ item.id }}" type="number"
                                         name="quantity" value="1" min="1" max="99" data-item_id="{{ item.id }}">
                                     <div class="input-group-append">
-                                        <button
-                                            type="button"
+                                        <button type="button"
                                             class="increment-qty btn btn-black rounded-0 increment-qty_{{ item.id }}"
                                             data-item_id="{{ item.id }}">
                                             <span class="icon"><i class="fas fa-plus"></i></span>
@@ -109,7 +110,8 @@
                             <a href="{% url 'items' %}" class="btn btn-outline-black rounded-0 mt-5">
                                 <i class="fas fa-chevron-left"></i> Back to Pro Shop
                             </a>
-                            <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Cart">
+                            <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5"
+                                value="Add to Cart">
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                         {% endwith %}
@@ -142,6 +144,9 @@
         {% empty %}
         <p>No reviews yet. Be the first to leave one!</p>
         {% endfor %}
+        {% if user.is_authenticated %}
+        <a href="{% url 'add_review' item.id %}" id="open-review-modal" class="btn custom mt-3">Leave a Review</a>
+        {% endif %}
     </div>
 
     {% if user.is_authenticated %}
@@ -150,7 +155,7 @@
 
     <!-- Modal -->
     <!-- Modal Container -->
-    <div id="modal" class="custom-modal-backdrop">
+    <div id="modal" class="custom-modal-backdrop" style="display:none;">
         <div class="custom-modal-form">
             <h4 class="mb-3">Leave a Review</h4>
             <form method="post" action="{% url 'add_review' item.id %}">
@@ -176,6 +181,21 @@
 {% block postloadjs %}
 {{ block.super }}
 <script src="{% static 'JS/save-toggle-script.js' %}"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('modal');
+  const openBtn = document.getElementById('open-review-modal');
+
+  if (openBtn && modal) {
+    openBtn.addEventListener('click', function(e) {
+      e.preventDefault();  // prevent link navigation if <a>
+      modal.style.display = 'flex'; // show modal
+    });
+  }
+});
+</script>
+
 
 {% include 'items/includes/quantity_input_script.html' %}
 

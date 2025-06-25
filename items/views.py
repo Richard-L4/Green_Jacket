@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.urls import reverse
+from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.db.models import Q
@@ -89,6 +90,11 @@ def item_detail(request, pk):
     return render(request, 'items/item_detail.html', context)
 
 
+def item_image(request, pk):
+    item = get_object_or_404(Item, pk=pk)
+    return render(request, 'items/item_image.html', {'item': item})
+
+
 @staff_member_required
 def add_item(request):
     """ Add a item to the store """
@@ -169,7 +175,8 @@ def edit_review(request, pk, review_id):
             return redirect('item_detail', pk=pk)
     else:
         form = ReviewForm(instance=review)
-    return render(request, 'edit_review.html', {'form': form, 'item_id': pk})
+    return render(request, 'items/edit_review.html', {'form': form, 'item_id': pk})
+
 
 
 @login_required
@@ -180,13 +187,20 @@ def delete_review(request, pk, review_id):
     return redirect('item_detail', pk=pk)
 
 
+@require_POST
 @login_required
-def toggle_save_item(request, pk):
-    item = get_object_or_404(Item, pk=pk)
-    saved_obj, created = SavedItem.objects.get_or_create(
-        user=request.user, item=item)
+def toggle_save_item(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+    user = request.user
+
+    saved_item, created = SavedItem.objects.get_or_create(user=user, item=item)
+
     if not created:
-        saved_obj.delete()
-        return JsonResponse({'saved': False})
+        # Already saved, so remove it
+        saved_item.delete()
+        saved = False
     else:
-        return JsonResponse({'saved': True})
+        # Newly saved
+        saved = True
+
+    return JsonResponse({'saved': saved})
