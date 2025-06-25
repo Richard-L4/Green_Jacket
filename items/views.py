@@ -167,7 +167,9 @@ def add_review(request, pk):
 
 @login_required
 def edit_review(request, pk, review_id):
+    item = get_object_or_404(Item, pk=pk)
     review = get_object_or_404(Review, id=review_id, user=request.user)
+
     if request.method == 'POST':
         form = ReviewForm(request.POST, instance=review)
         if form.is_valid():
@@ -175,16 +177,28 @@ def edit_review(request, pk, review_id):
             return redirect('item_detail', pk=pk)
     else:
         form = ReviewForm(instance=review)
-    return render(request, 'items/edit_review.html', {'form': form, 'item_id': pk})
 
+    return render(request, 'items/edit_review.html', {
+        'form': form,
+        'item': item,
+        'review': review
+    })
 
 
 @login_required
 def delete_review(request, pk, review_id):
     review = get_object_or_404(Review, id=review_id, user=request.user)
+
     if request.method == 'POST':
         review.delete()
-    return redirect('item_detail', pk=pk)
+        messages.success(request, "Your review was deleted.")
+        return redirect('item_detail', pk=pk)
+
+    return render(request, 'items/delete_review.html', {
+        'review': review,
+        'item_id': pk,
+    })
+
 
 
 @require_POST

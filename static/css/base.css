@@ -112,6 +112,134 @@ body {
   margin-top: 1rem;
 }
 
+#edit-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 150px 20px 0 20px;
+}
+
+#edit-box {
+  background-color: #f9f9f9;
+  border: 2px solid #084998;
+  border-radius: 8px;
+  padding: 2rem;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#edit-box h2 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  color: #222;
+}
+
+#edit-box form textarea {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#edit-box form .button-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+#edit-box form button,
+#edit-box form a {
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+#edit-box form button {
+  background-color: #dc3545; /* danger red */
+  color: white;
+}
+
+#edit-box form button:hover {
+  background-color: #b02a37;
+}
+
+#edit-box form a {
+    color: #fff !important;
+    background-color: #2e3b4b !important;
+    border-color:#2e3b4b !important;
+}
+
+#edit-box form a:hover {
+   background-color: #084998 !important;
+}
+
+
+#delete-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 150px;
+  padding-right: 20px;
+  padding-bottom: 0px;
+  padding-left: 20px;
+}
+
+
+#delete-box {
+  background-color: #f9f9f9;      /* light gray background */
+  border: 2px solid #084998;      /* blue border */
+  border-radius: 8px;             /* rounded corners */
+  padding: 2rem;                  /* spacing inside */
+  max-width: 600px;               /* width limit */
+  margin: 2rem auto;              /* center horizontally with margin */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* subtle shadow */
+  color: #333;                   /* dark text */
+  text-align: center;            /* center text */
+}
+
+
+
+#delete-page form button,
+#delete-page form a {
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+#delete-page form button {
+  background-color: #dc3545; /* bootstrap danger red */
+  color: white;
+}
+
+#delete-page form button:hover {
+  background-color: #b02a37;
+}
+
+#delete-page form a {
+  background-color: #2e3b4b; /* bootstrap secondary gray */
+  color: white;
+}
+
+#delete-page form a:hover {
+  background-color: #084998;
+}
+
 /*  custom button style for leave a review */
 a.btn.custom {
     color: #fff !important;
