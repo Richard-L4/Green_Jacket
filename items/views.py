@@ -69,14 +69,15 @@ def all_items(request):
 
 def item_detail(request, pk):
     item = get_object_or_404(Item, pk=pk)
-    reviews = item.reviews.select_related('user')
-    
+    reviews = item.reviews.select_related('user').all()
+
+    user_review_exists = False
+    if request.user.is_authenticated:
+        user_review_exists = reviews.filter(user=request.user).exists()
+
     saved = (
         request.user.is_authenticated and
-        SavedItem.objects.filter(
-            user=request.user,
-            item=item
-        ).exists()
+        SavedItem.objects.filter(user=request.user, item=item).exists()
     )
 
     review_form = ReviewForm()
@@ -86,6 +87,7 @@ def item_detail(request, pk):
         'reviews': reviews,
         'saved': saved,
         'review_form': review_form,
+        'user_review_exists': user_review_exists,
     }
     return render(request, 'items/item_detail.html', context)
 
@@ -156,12 +158,21 @@ def delete_item(request, pk):
 @login_required
 def add_review(request, pk):
     item = get_object_or_404(Item, pk=pk)
-    form = ReviewForm(request.POST)
-    if form.is_valid():
-        review = form.save(commit=False)
-        review.user = request.user
-        review.item = item
-        review.save()
+
+    if Review.objects.filter(item=item, user=request.user).exists():
+        messages.warning(request, "You've already reviewed this item.")
+        return redirect('item_detail', pk=pk)
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = request.user
+            review.item = item
+            review.save()
+            messages.success(request, "Your review has been added.")
+            return redirect('item_detail', pk=pk)
+
     return redirect('item_detail', pk=pk)
 
 
