@@ -40,11 +40,11 @@
                     </a>
                 </p>
                 {% endif %}
-                {% if item.rating %}
+                <!--{% if item.rating %}
                 <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ item.rating }} / 5</small>
                 {% else %}
                 <small class="text-muted"></small>
-                {% endif %}
+                {% endif %}-->
                 <!--
                     {% if request.user.is_superuser %}
                 <small class="ml-3">
@@ -54,6 +54,10 @@
                 {% endif %}
                 #}-->
                 <p class="mt-3">{{ item.description }}</p>
+
+                {% if item.has_sizes %}
+                <p><strong>Available Sizes:</strong> XS, S, M, L, XL</p>
+                {% endif %}
 
                 <!-- Save for Later Button -->
                 <form id="save-form" method="POST" action="{% url 'toggle_save_item' item.id %}" class="mb-3">
