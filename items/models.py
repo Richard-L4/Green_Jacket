@@ -4,6 +4,14 @@ from cloudinary.models import CloudinaryField   # type: ignore
 
 
 class Category(models.Model):
+    # 🔽 NEW: Allow categories to have a parent category (for subcategories)
+    parent = models.ForeignKey(
+        'self',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='subcategories'
+    )
 
     class Meta:
         verbose_name_plural = 'Categories'

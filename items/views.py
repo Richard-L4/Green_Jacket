@@ -39,8 +39,11 @@ def all_items(request):
 
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
-            items = items.filter(category__name__in=categories)
-            current_category = Category.objects.filter(name__in=categories)
+            category_objs = Category.objects.filter(
+                 Q(name__in=categories) | Q(parent__name__in=categories)
+            )
+            items = items.filter(category__in=category_objs)
+            current_category = category_objs.select_related('parent')
 
         if 'q' in request.GET:
             query = request.GET['q']
