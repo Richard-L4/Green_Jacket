@@ -14,7 +14,7 @@ urlpatterns = [
          views.delete_review, name='delete_review'),
     path('item/<int:item_id>/toggle_save/',
          views.toggle_save_item, name='toggle_save_item'),
-
+    path('add/', views.add_item, name='add_item'),
     path('edit/<int:item_id>/',
          views.edit_item, name='edit_item'),
     path('delete/<int:pk>/',

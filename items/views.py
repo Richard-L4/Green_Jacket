@@ -154,8 +154,8 @@ def delete_item(request, pk):
     if request.method == "POST":
         item.delete()
         return redirect('items')  # or wherever you want after deleting
-    # If GET, you can optionally show a confirmation page or just redirect
-    return redirect('items')
+   
+    return render(request, 'items/delete_item.html', {'item': item}) 
 
 
 @login_required
