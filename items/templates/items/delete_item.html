@@ -1,24 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div class="container mt-5" style="max-width: 480px;">
-    <h3 class="mb-4 text-center text-danger">
-      Confirm Item Deletion
-    </h3>
+<div id="item">
+  <div id="item-box">
+    <h3 class="mb-3 text-danger">Confirm Item Deletion</h3>
 
-    <p class="text-center mb-4">
+    <p class="mb-4">
       Are you sure you want to permanently delete the item
-      <strong>"{{ item.name }}"</strong>?
+      <strong class="no-wrap">"{{ item.name }}"</strong>?
     </p>
 
-    <form method="POST" class="d-flex justify-content-center gap-4">
+    <form method="POST">
       {% csrf_token %}
-      <button type="submit" class="btn btn-danger fw-semibold px-4">
-        Delete Item
-      </button>
-      <a href="{% url 'item_detail' item.pk %}" class="btn btn-secondary fw-semibold px-4">
-        Cancel
-      </a>
+      <div class="d-flex justify-content-center align-items-start flex-wrap">
+        <button type="submit" class="btn btn-danger fw-semibold px-4 mr-3 mb-2">
+          Delete Item
+        </button>
+        <a href="{% url 'item_detail' item.pk %}" class="btn btn-secondary fw-semibold px-4">
+          Cancel
+        </a>
+      </div>
     </form>
+
+
   </div>
+</div>
 {% endblock %}

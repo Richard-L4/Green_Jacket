@@ -241,6 +241,37 @@ body {
   background-color: #084998;
 }
 
+/* item delete page */
+
+#item {
+  min-height: 100vh;
+  color: white;
+  display: flex;
+  justify-content: center;   /* vertical centering */
+  align-items: center;       /* horizontal centering */
+  padding: 2rem;
+  text-align: center;
+}
+
+
+#item-box {
+  background-color: #1e2a38;
+  color: white;
+  border: 2px solid #084998;
+  border-radius: 8px;
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* to keep the item name on one line in item deletion box */
+.no-wrap {
+  white-space: nowrap;
+}
+
+
+
 /*  custom button style for leave a review */
 a.btn.custom {
     color: #fff !important;
