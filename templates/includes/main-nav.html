@@ -1,6 +1,12 @@
 <div class="collapse navbar-collapse" id="main-nav">
     <ul class="navbar-nav w-auto mx-auto">
         <li class="nav-item dropdown">
+            {% if request.resolver_match.url_name != 'clubhouse' %}
+            <a href="{% url 'clubhouse' %}" class="dropdown-item d-block d-lg-none font-weight-bold" style="padding-left: 0rem;">BACK TO MAIN SCREEN
+            </a>
+             <div class="dropdown-divider d-block d-lg-none"></div>
+            {% endif %}
+
             <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-items-link"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 General Items
