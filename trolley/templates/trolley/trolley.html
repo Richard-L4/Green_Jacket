@@ -59,11 +59,7 @@
                         </div>
                     </div>
                     {% endfor %}
-                    <div class="btt-button shadow-sm rounded-0 border border-black">
-                        <a class="btt-link d-flex h-100">
-                            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
-                        </a>
-                    </div>
+
                 </div>
                 <div class="table-responsive rounded d-none d-md-block">
                     <table class="table table-sm table-borderless">
@@ -119,6 +115,12 @@
                 {% endif %}
             </div>
         </div>
+    </div>
+    <!-- Back To Top Button: moved outside the d-block d-md-none div to show on all screen sizes -->
+    <div class="btt-button shadow-sm rounded-0 border border-black mt-3">
+        <a class="btt-link d-flex h-100" href="#">
+            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+        </a>
     </div>
 </div>
 {% endblock %}
