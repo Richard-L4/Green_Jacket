@@ -270,7 +270,10 @@ body {
   white-space: nowrap;
 }
 
-
+/* ID styling to keep back to clubhouse tab on small screens to left in line with other tabs */
+#back-to-main {
+    padding-left: 0;
+}
 
 /*  custom button style for leave a review */
 a.btn.custom {

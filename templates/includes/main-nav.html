@@ -2,7 +2,7 @@
     <ul class="navbar-nav w-auto mx-auto">
         <li class="nav-item dropdown">
             {% if request.resolver_match.url_name != 'clubhouse' %}
-            <a href="{% url 'clubhouse' %}" class="dropdown-item d-block d-lg-none font-weight-bold" style="padding-left: 0rem;">BACK TO MAIN SCREEN
+            <a href="{% url 'clubhouse' %}" id="back-to-main" class="dropdown-item d-block d-lg-none font-weight-bold">CLUBHOUSE
             </a>
              <div class="dropdown-divider d-block d-lg-none"></div>
             {% endif %}
