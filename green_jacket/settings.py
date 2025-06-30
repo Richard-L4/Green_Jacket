@@ -57,6 +57,7 @@ INSTALLED_APPS = [
 
     'clubhouse',
     'items',
+    'trolley',
 
     'crispy_forms',
     'crispy_bootstrap4',
@@ -95,6 +96,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
+                'trolley.contexts.trolley_contents',
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',
@@ -198,6 +200,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Stripe
+FREE_DELIVERY_THRESHOLD = 100
+STANDARD_DELIVERY_PERCENTAGE = 10
+
 
 # Cloudinary configuration
 CLOUDINARY_STORAGE = {

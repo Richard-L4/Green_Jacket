@@ -1,0 +1,7 @@
+{% load static %}
+
+{% if item.featured_image %}
+    <img class="img-fluid rounded" src="{{ item.featured_image.url }}" alt="{{ item.name }}">
+{% else %}
+    <img class="img-fluid rounded" src="{% static 'images/default.jpg' %}" alt="{{ item.name }}">
+{% endif %}

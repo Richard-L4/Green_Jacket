@@ -29,6 +29,7 @@ urlpatterns = [
     path('', include('clubhouse.urls')),
     path('items/', include('items.urls')),
     path('who-we-are/', views.who_we_are, name='who_we_are'),
+    path('trolley/', include('trolley.urls')),
 
 ]
 
