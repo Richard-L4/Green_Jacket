@@ -58,9 +58,11 @@ INSTALLED_APPS = [
     'clubhouse',
     'items',
     'trolley',
-
+    'checkout',
+  
     'crispy_forms',
     'crispy_bootstrap4',
+    'django_countries', 
 
 ]
 
