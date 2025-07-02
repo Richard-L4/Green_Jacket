@@ -109,7 +109,7 @@
                         <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
                     </fieldset>
                      <!-- Add hidden input here -->
-                     <input type="hidden" name="client_secret" id="client_secret_input" value="" />
+                     <input type="hidden" name="client_secret" id="client_secret_input" value=""/>
                     <div class="submit-button text-right mt-5 mb-2">                    
 						<a href="{% url 'view_trolley' %}" class="btn btn-outline-black rounded-0">
 							<span class="icon">
@@ -135,11 +135,11 @@
         </div>
     </div>
       <div id="loading-overlay">
-        <h1 class="text-light logo-font loading-spinner">
+        <div class="text-light logo-font loading-spinner">
             <span class="icon">
                 <i class="fas fa-3x fa-sync-alt fa-spin"></i>
             </span>
-        </h1>
+        </div>
     </div>
 {% endblock %}
 
