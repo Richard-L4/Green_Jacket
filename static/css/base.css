@@ -276,7 +276,6 @@ body {
 }
 
 
-
 /*  custom button style for leave a review */
 a.btn.custom {
     color: #fff !important;
@@ -435,7 +434,10 @@ input[name='q']::placeholder {
     overflow-y: auto;
 }
 
+
+
 /* -------------------------------- Media Queries */
+
 
 /* Slightly larger container on xl screens */
 @media (min-width: 1200px) {
