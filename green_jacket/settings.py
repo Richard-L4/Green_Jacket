@@ -59,10 +59,11 @@ INSTALLED_APPS = [
     'items',
     'trolley',
     'checkout',
+    'profiles',
   
     'crispy_forms',
     'crispy_bootstrap4',
-    'django_countries', 
+    'django_countries',
 
 ]
 
