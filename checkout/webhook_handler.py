@@ -6,7 +6,9 @@ from profiles.models import UserProfile
 
 import json
 import time
+import logging
 
+logger = logging.getLogger(__name__)  # ✅ Logging setup
 
 class StripeWH_Handler:
     """Handle Stripe webhooks"""
@@ -21,7 +23,7 @@ class StripeWH_Handler:
         return HttpResponse(
             content=f'Unhandled webhook received: {event["type"]}',
             status=200)
-    
+
     def handle_payment_intent_succeeded(self, event):
         """
         Handle the payment_intent.succeeded webhook from Stripe
@@ -78,6 +80,7 @@ class StripeWH_Handler:
             except Order.DoesNotExist:
                 attempt += 1
                 time.sleep(1)
+
         if order_exists:
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
@@ -119,16 +122,17 @@ class StripeWH_Handler:
                             )
                             order_line_item.save()
             except Exception as e:
+                logger.error(f'Error creating order from webhook {event["type"]}: {e}', exc_info=True)  # ✅ Logs full traceback
                 if order:
                     order.delete()
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
                     status=500)
-        
+
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
             status=200)
-    
+
     def handle_payment_intent_payment_failed(self, event):
         """
         Handle the payment_intent.payment_failed webhook from Stripe
