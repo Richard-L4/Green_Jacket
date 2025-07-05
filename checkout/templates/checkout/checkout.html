@@ -109,7 +109,7 @@
                         <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
                     </fieldset>
                      <!-- Add hidden input here -->
-                     <input type="hidden" name="client_secret" id="client_secret_input" value=""/>
+                     <input type="hidden" name="client_secret" id="client_secret_input" value="">
                     <div class="submit-button text-right mt-5 mb-2">                    
 						<a href="{% url 'view_trolley' %}" class="btn btn-outline-black rounded-0">
 							<span class="icon">
@@ -127,7 +127,7 @@
 							<span class="icon">
 								<i class="fas fa-exclamation-circle"></i>
 							</span>
-							<span>Your card will be charged <strong>${{ grand_total|floatformat:2 }}</strong></span>
+							<span>Your card will be charged <strong>£{{ grand_total|floatformat:2 }}</strong></span>
 						</p>
 					</div>
                 </form>
