@@ -1,10 +1,9 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import (
+    render, redirect, reverse, get_object_or_404, HttpResponse
+)
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
-
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
@@ -80,21 +79,25 @@ def checkout(request):
                             order_line_item.save()
                 except Item.DoesNotExist:
                     messages.error(request, (
-                        "One of the items in your bag wasn't found in our database. "
+                        "One of the products in your trolley "
+                        "wasn't found in our database. "
                         "Please call us for assistance!")
                     )
                     order.delete()
                     return redirect(reverse('view_trolley'))
 
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            return redirect(
+                reverse('checkout_success', args=[order.order_number]))
         else:
-            messages.error(request, 'There was an error with your form. \
+            messages.error(
+                request, 'There was an error with your form. \
                 Please double check your information.')
     else:
         trolley = request.session.get('trolley', {})
         if not trolley:
-            messages.error(request, "There's nothing in your bag at the moment")
+            messages.error(
+                request, "There's nothing in your trolley at the moment")
             return redirect(reverse('items'))
 
         current_trolley = trolley_contents(request)
@@ -137,6 +140,7 @@ def checkout(request):
         }
 
         return render(request, template, context)
+        # end of the corrected indentation
 
 
 def checkout_success(request, order_number):
@@ -166,26 +170,6 @@ def checkout_success(request, order_number):
             user_profile_form = UserProfileForm(profile_data, instance=profile)
             if user_profile_form.is_valid():
                 user_profile_form.save()
-
-    # Render email subject and body from your txt files
-    subject = render_to_string(
-        'checkout/confirmation_emails/confirmation_email_subject.txt',
-        {'order': order}
-    ).strip()  # strip() to remove any trailing newlines
-
-    message = render_to_string(
-        'checkout/confirmation_emails/confirmation_email_body.txt',
-        {'order': order}
-    )
-
-    # Send email
-    send_mail(
-        subject,
-        message,
-        settings.DEFAULT_FROM_EMAIL,
-        [order.email],
-        fail_silently=False,
-    )
 
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}. A confirmation \
