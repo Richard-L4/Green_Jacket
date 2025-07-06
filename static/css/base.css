@@ -536,20 +536,26 @@ input[name='q']::placeholder {
     background-repeat: no-repeat;
     background-attachment: fixed;
     min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
 /* Form content box styling */
+
+
 .form-box {
   background-color: white;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  width: 75vw;       /* 50% of viewport width */
-  height: auto;      /* 80% of viewport height */
+  width: 75vw;      
+  height: auto;      
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center form content vertically */
+  justify-content: center;
   box-sizing: border-box;
   max-width: 37.5rem;
   margin-left: auto;
@@ -557,76 +563,7 @@ input[name='q']::placeholder {
   
 
 }
-
-#login {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-}
-
-#logout {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-#sign-up {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-#password-reset {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-#pw {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-#pw-1 {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-#pw-2 {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-#pw-3 {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-#pw-4 {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-#pw-5 {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
+  
 /* Footer styling */
 footer {
     background: #2e3b4b;
