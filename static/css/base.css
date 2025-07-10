@@ -21,7 +21,20 @@ body {
 
 .logo-font {
     text-transform: uppercase;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    color: #006400; /* Dark green */
 }
+/* to change the color of the text in the banner */
+.free-shipping-text {
+  color: white;
+}
+
+/* change the depth of the banner */
+#delivery-banner .col {
+  padding: 1px 0; /* 20px top and bottom padding */
+}
+
 
 .main-logo-link {
     width: fit-content;
@@ -696,7 +709,7 @@ footer {
     }
 
     #delivery-banner h4 {
-        font-size: .9rem;
+        font-size: 1.5rem;
     }
 
     .btn.btn-outline-black.rounded-0,

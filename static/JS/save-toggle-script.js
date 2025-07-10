@@ -1,3 +1,27 @@
+    document.addEventListener('DOMContentLoaded', function () {
+        // Open review modal
+        const modal = document.getElementById('modal');
+        const openBtn = document.getElementById('open-review-modal');
+
+        if (openBtn && modal) {
+            openBtn.addEventListener('click', function (e) {
+                e.preventDefault();  // prevent link navigation if <a>
+                modal.style.display = 'flex'; // show modal
+            });
+        }
+
+        // Save for Later alert if not logged in
+        const saveWrapper = document.getElementById('save-click-wrapper');
+        const saveButton = document.getElementById('save-button');
+        const isAuthenticated = saveButton.dataset.authenticated === "true";
+
+        if (!isAuthenticated && saveWrapper && saveButton) {
+            saveWrapper.addEventListener('click', function (e) {
+                e.preventDefault();
+                alert("Please log in to save item for later.");
+            });
+        }
+    });
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('save-form');
     if (!form) return;
