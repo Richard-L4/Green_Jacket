@@ -90,6 +90,49 @@ body {
     padding-top: 150px;
 }
 
+/* custom hover for itmes page */
+.hover-shadow {
+  transition: all 0.3s ease-in-out;
+  border-radius: 0.5rem; /* add rounded corners */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  border: 2px solid #2e3b4b; /* strong black border */
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+  transform: scale(1.04);
+}
+
+/* For no-hover elements — bigger shadow always, NO hover effect */
+.no-hover.hover-shadow {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.50); /* bigger shadow by default */
+  transition: none !important; /* disable transition */
+}
+
+.no-hover.hover-shadow:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.50) !important; /* same shadow on hover */
+  transform: none !important; /* disable scale */
+}
+
+
+.table-bordered thead.thead-dark th {
+    border-color: #2e3b4b !important;
+}
+
+
+.no-border {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+
+
+.checkout-buttons-wrapper {
+    margin-top: 5rem;
+}
+
+
+
 #about-page {
   min-height: 100vh;
   display: flex;
