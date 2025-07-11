@@ -412,26 +412,40 @@ input[name='q']::placeholder {
 /* Modal backdrop covering the page */
 .custom-modal-backdrop {
   position: fixed;
-  top: 240px;
-  left: 146px;
-  width: 80%;
-  height: 63%;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.6); /* dim background */
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1050;
+  padding: 1rem; /* Adds breathing room on smaller screens */
+  box-sizing: border-box;
 }
+
 
 /* Centered modal box */
 .custom-modal-form {
+  position: relative;
   background: white;
   padding: 2rem;
   border-radius: 12px;
   max-width: 600px;
   width: 90%;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  max-height: 90vh;
+  overflow-y: auto;
 }
+
+.custom-modal-form input,
+.custom-modal-form textarea {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
 /* Pushes the footer to the bottom of review html */
 #main-content {
   padding-top: 164px;  /* push below navbar */

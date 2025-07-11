@@ -27,11 +27,19 @@
                     {% csrf_token %}
                     {% for field in form %}
                         {% if field.name != 'image' %}
-                            {{ field | as_crispy_field }}
+                            {{ field|as_crispy_field }}
                         {% else %}
-                            {{ field }}
+                            <!-- Render the image field manually so we can set a unique ID -->
+                            <div class="form-group">
+                                <label for="new-image">Image</label>
+                                <input type="file" name="image" class="form-control" id="new-image">
+                            </div>
                         {% endif %}
                     {% endfor %}
+
+                    <!-- Valid p element for JS feedback -->
+                    <p class="text-danger" id="filename"></p>
+
                     <div class="text-right">
                         <a class="btn btn-outline-black rounded-0" href="{% url 'items' %}">Cancel</a>
                         <button class="btn btn-black rounded-0" type="submit">Update Item</button>
@@ -47,7 +55,11 @@
     <script>
         $('#new-image').change(function() {
             var file = $('#new-image')[0].files[0];
-            $('#filename').text(`Image will be set to: ${file.name}`);
+            if (file) {
+                $('#filename').text(`Image will be set to: ${file.name}`);
+            } else {
+                $('#filename').text('');
+            }
         });
     </script>
 {% endblock %}
