@@ -40,6 +40,37 @@ body {
     width: fit-content;
 }
 
+
+/* css for drop down menu tabs */
+/* Full reset for dropdown menu */
+.dropdown-menu {
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: #2e3b4b !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+/* Tighten individual dropdown items */
+.dropdown-menu .dropdown-item {
+    padding: 0.5rem 1rem !important; /* restore consistent spacing */
+    margin: 0 !important;
+    background-color: #2e3b4b !important;
+    color: white !important;
+    transition: background-color 0.3s, color 0.3s;
+    border: none !important;
+}
+
+/* Hover styles */
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus {
+    background-color: white !important;
+    color: black !important;
+    border: none !important;
+}
+
+
 .home-title {
     background:  #2e3b4b;
     color: white;

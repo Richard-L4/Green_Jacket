@@ -18,7 +18,13 @@
         if (!isAuthenticated && saveWrapper && saveButton) {
             saveWrapper.addEventListener('click', function (e) {
                 e.preventDefault();
-                alert("Please log in to save item for later.");
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Login Required',
+                    text: 'Please log in to save this item for later.',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                });
             });
         }
     });
