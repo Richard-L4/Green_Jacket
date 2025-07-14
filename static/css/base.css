@@ -32,7 +32,7 @@ body {
 
 /* change the depth of the banner */
 #delivery-banner .col {
-  padding: 1px 0; /* 20px top and bottom padding */
+  padding: 0.0625rem 0; /* 20px top and bottom padding */
 }
 
 
@@ -74,7 +74,7 @@ body {
 .home-title {
     background:  #2e3b4b;
     color: white;
-    min-width: 260px;
+    min-width: 16.25rem;
     padding: 1.5rem; /* similar to .py-3 in Bootstrap */
     text-align: center;
     margin-bottom: 1.5rem; /* optional spacing from next element */
@@ -84,7 +84,7 @@ body {
 .shop-now-button {
     background: #2e3b4b;
     color: white;
-    min-width: 260px;
+    min-width: 16.25rem;
 }
 
 .btn-black {
@@ -95,7 +95,7 @@ body {
 .btn-outline-black {
     background: white;
     color: black !important; /* use important to override link colors for <a> elements */
-    border: 1px solid black;
+    border: 0.0625rem solid black;
 }
 
 .btn-outline-black:hover,
@@ -120,7 +120,7 @@ body {
 }
 
 .border-black {
-    border: 1px solid black !important;
+    border: 0.0625rem solid black !important;
 }
 
 .bg-black {
@@ -131,30 +131,30 @@ body {
 /* who we are page to push footer down */
 .about {
     min-height: 100vh;
-    padding-top: 150px;
+    padding-top: 9.375rem;
 }
 
 /* custom hover for itmes page */
 .hover-shadow {
   transition: all 0.3s ease-in-out;
   border-radius: 0.5rem; /* add rounded corners */
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-  border: 2px solid #2e3b4b; /* strong black border */
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.35);
+  border: 0.125rem solid #2e3b4b; /* strong black border */
 }
 
 .hover-shadow:hover {
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.35);
   transform: scale(1.04);
 }
 
 /* For no-hover elements — bigger shadow always, NO hover effect */
 .no-hover.hover-shadow {
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.50); /* bigger shadow by default */
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.50); /* bigger shadow by default */
   transition: none !important; /* disable transition */
 }
 
 .no-hover.hover-shadow:hover {
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.50) !important; /* same shadow on hover */
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.50) !important; /* same shadow on hover */
   transform: none !important; /* disable scale */
 }
 
@@ -184,10 +184,10 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding-top: 150px;
-  padding-right: 20px;
-  padding-bottom: 0px;
-  padding-left: 20px;
+  padding-top: 9.375rem;
+  padding-right: 1.25rem;
+  padding-bottom: 0rem;
+  padding-left: 1.25rem;
 }
 
 #about-page .centered-image {
@@ -207,16 +207,16 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 150px 20px 0 20px;
+  padding: 9.375rem 1.25rem 0 1.25rem;
 }
 
 #edit-box {
   background-color: #f9f9f9;
-  border: 2px solid #084998;
-  border-radius: 8px;
+  border: 0.125rem solid #084998;
+  border-radius: 0.5rem;
   padding: 2rem;
-  max-width: 600px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  max-width: 37.5rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1);
 }
 
 #edit-box h2 {
@@ -231,7 +231,7 @@ body {
   font-size: 1rem;
   margin-bottom: 1.5rem;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 0.25rem;
 }
 
 #edit-box form .button-row {
@@ -244,7 +244,7 @@ body {
 #edit-box form a {
   padding: 0.5rem 1.5rem;
   font-size: 1rem;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   text-decoration: none;
   cursor: pointer;
   border: none;
@@ -252,7 +252,7 @@ body {
 }
 
 #edit-box form button {
-  background-color: #dc3545; /* danger red */
+  background-color: #dc3545; 
   color: white;
 }
 
@@ -278,21 +278,21 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding-top: 150px;
-  padding-right: 20px;
-  padding-bottom: 0px;
-  padding-left: 20px;
+  padding-top: 9.375rem;
+  padding-right: 1.25rem;
+  padding-bottom: 0rem;
+  padding-left: 1.25rem;
 }
 
 
 #delete-box {
   background-color: #f9f9f9;      /* light gray background */
   border: 2px solid #084998;      /* blue border */
-  border-radius: 8px;             /* rounded corners */
+  border-radius: 0.5rem;             /* rounded corners */
   padding: 2rem;                  /* spacing inside */
-  max-width: 600px;               /* width limit */
+  max-width: 37.5rem;               /* width limit */
   margin: 2rem auto;              /* center horizontally with margin */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* subtle shadow */
+  box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1); /* subtle shadow */
   color: #333;                   /* dark text */
   text-align: center;            /* center text */
 }
@@ -303,7 +303,7 @@ body {
 #delete-page form a {
   padding: 0.5rem 1.5rem;
   font-size: 1rem;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   text-decoration: none;
   cursor: pointer;
   border: none;
@@ -344,12 +344,12 @@ body {
 #item-box {
   background-color: #1e2a38;
   color: white;
-  border: 2px solid #084998;
-  border-radius: 8px;
+  border: 0.125rem solid #084998;
+  border-radius: 0.5rem;
   padding: 2rem;
-  max-width: 600px;
+  max-width: 37.5rem;
   width: 100%;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.2);
 }
 
 /* to keep the item name on one line in item deletion box */
@@ -392,11 +392,11 @@ a.category-badge > span.badge:hover {
 }
 
 .btt-button {
-    height: 42px;
-    width: 42px;
+    height: 2.625rem;
+    width: 2.625rem;
     position: fixed;
-    bottom: 10px;
-    right: 10px;
+    bottom: 0.625rem;
+    right: 0.625rem;
 }
 
 .btt-link,
@@ -431,10 +431,10 @@ input[name='q']::placeholder {
   position: relative;
   background: white;
   padding: 2rem;
-  border-radius: 12px;
-  max-width: 600px;
+  border-radius: 0.75rem;
+  max-width: 37.5rem;
   width: 90%;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.3);
   max-height: 90vh;
   overflow-y: auto;
 }
@@ -448,7 +448,7 @@ input[name='q']::placeholder {
 
 /* Pushes the footer to the bottom of review html */
 #main-content {
-  padding-top: 164px;  /* push below navbar */
+  padding-top: 10.25rem;  /* push below navbar */
   min-height: calc(100vh - 5.625rem); /* full viewport minus footer */
   display: flex;
   justify-content: center;  /* horizontal center */
@@ -461,9 +461,9 @@ input[name='q']::placeholder {
 .review-box {
   background: rgba(255, 255, 255, 0.9); /* light translucent white */
   padding: 2rem 3rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-  max-width: 500px;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.2);
+  max-width: 31.25rem;
   width: 100%;
 }
 
@@ -602,7 +602,7 @@ input[name='q']::placeholder {
 	color: #17a2b8; /* text-info */
 }
 
-/* Product Form */
+/* Item Form */
 
 .btn-file {
     position: relative;
@@ -650,8 +650,8 @@ input[name='q']::placeholder {
 .form-box {
   background-color: white;
   padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 0.5rem;
+  box-shadow: 0 0.25rem 0.625rem rgba(0,0,0,0.1);
   width: 75vw;      
   height: auto;      
   display: flex;
@@ -722,14 +722,14 @@ footer {
     }
 
     .header-container {
-        padding-top: 164px;   
+        padding-top: 10.25rem;   
     }
 }
 
 /* pad the top a bit when navbar is collapsed on mobile & logout page footer */
 @media (max-width: 991px) {
     .header-container {
-        padding-top: 116px;
+        padding-top: 7.25rem;
     }
 
     body {
