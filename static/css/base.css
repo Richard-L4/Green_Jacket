@@ -72,7 +72,7 @@ body {
 
 
 .home-title {
-    background:  #2e3b4b;
+    background:  #3b4f68;
     color: white;
     min-width: 16.25rem;
     padding: 1.5rem; /* similar to .py-3 in Bootstrap */
@@ -82,13 +82,13 @@ body {
 
 
 .shop-now-button {
-    background: #2e3b4b;
+    background: #3b4f68;
     color: white;
     min-width: 16.25rem;
 }
 
 .btn-black {
-    background: #2e3b4b;
+    background: #3b4f68;
     color: white;
 }
 
@@ -124,7 +124,7 @@ body {
 }
 
 .bg-black {
-    background:  #2e3b4b !important;
+    background:  #3b4f68 !important;
 }
 
 
@@ -139,7 +139,7 @@ body {
   transition: all 0.3s ease-in-out;
   border-radius: 0.5rem; /* add rounded corners */
   box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.35);
-  border: 0.125rem solid #2e3b4b; /* strong black border */
+  border: 0.125rem solid #3b4f68; /* strong black border */
 }
 
 .hover-shadow:hover {
@@ -160,7 +160,7 @@ body {
 
 
 .table-bordered thead.thead-dark th {
-    border-color: #2e3b4b !important;
+    border-color: #3b4f68 !important;
 }
 
 
@@ -262,8 +262,8 @@ body {
 
 #edit-box form a {
     color: #fff !important;
-    background-color: #2e3b4b !important;
-    border-color:#2e3b4b !important;
+    background-color: #3b4f68 !important;
+    border-color:#3b4f68 !important;
 }
 
 #edit-box form a:hover {
@@ -320,7 +320,7 @@ body {
 }
 
 #delete-page form a {
-  background-color: #2e3b4b; /* bootstrap secondary gray */
+  background-color: #3b4f68; /* bootstrap secondary gray */
   color: white;
 }
 
@@ -366,8 +366,8 @@ body {
 /*  custom button style for leave a review */
 a.btn.custom {
     color: #fff !important;
-    background-color: #2e3b4b !important;
-    border-color:#2e3b4b !important;
+    background-color: #3b4f68 !important;
+    border-color:#3b4f68 !important;
 }
 
 a.btn.custom:hover {
@@ -545,6 +545,7 @@ input[name='q']::placeholder {
 @media (min-width: 1200px) {
   .container {
     max-width: 80%;
+    min-height: 48vh;;
   }
 }
 
@@ -665,7 +666,7 @@ input[name='q']::placeholder {
 
 /* Footer styling */
 footer {
-    background: #2e3b4b;
+    background: #3b4f68;
     /* Let the body background show through */
     padding: 0.625rem 0;
     /* Add some spacing */
