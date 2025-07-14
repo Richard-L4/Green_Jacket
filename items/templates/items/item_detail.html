@@ -190,21 +190,6 @@
 {{ block.super }}
 <script src="{% static 'JS/save-toggle-script.js' %}"></script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const modal = document.getElementById('modal');
-        const openBtn = document.getElementById('open-review-modal');
-
-        if (openBtn && modal) {
-            openBtn.addEventListener('click', function (e) {
-                e.preventDefault();  // prevent link navigation if <a>
-                modal.style.display = 'flex'; // show modal
-            });
-        }
-    });
-</script>
-
-
 {% include 'items/includes/quantity_input_script.html' %}
 
 {% endblock %}

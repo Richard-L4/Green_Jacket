@@ -1,24 +1,20 @@
 <script>
+    
 
-    /* 
-    * Disable +/- buttons outside 1-99 range.
-    * If no size is passed to the function, the parameter will have a value of undefined by default,
-    * which prevents any errors 
-    */
+    // Function to enable/disable +/- buttons based on quantity
     function handleEnableDisable(itemId, size) {
-        // Target class instead of id for currentValue targetted element
-        if (size) {
-            var currentValue = parseInt($(`.size_${itemId}_${size}`).val());
+        let currentValue;
+
+        if (typeof size !== 'undefined') {
+            currentValue = parseInt($(`.size_${itemId}_${size}`).val(), 10);
         } else {
-            var currentValue = parseInt($(`.id_qty_${itemId}`).val());
+            currentValue = parseInt($(`.id_qty_${itemId}`).val(), 10);
         }
 
-        var minusDisabled = currentValue < 2;
-        var plusDisabled = currentValue > 98;
+        const minusDisabled = currentValue <= 0;
+        const plusDisabled = currentValue >= 99;
 
-        //  Use class instead of ID for decrement and increment buttons
-        //  Add conditional statement to check whether the item has a size
-        if (size) {
+        if (typeof size !== 'undefined') {
             $(`.decrement-size_${itemId}_${size}`).prop('disabled', minusDisabled);
             $(`.increment-size_${itemId}_${size}`).prop('disabled', plusDisabled);
         } else {
@@ -27,57 +23,75 @@
         }
     }
 
-    // Ensure proper enabling/disabling of all inputs on page load
-    var allQtyInputs = $('.qty_input');
-    for(var i = 0; i < allQtyInputs.length; i++){
-        var itemId = $(allQtyInputs[i]).data('item_id');
-        // for each input, check whether a size is applied
-        var size = $(allQtyInputs[i]).data('size');
-        handleEnableDisable(itemId, size);
-    }
+    $(document).ready(function () {
+        const allQtyInputs = $('.qty_input');
+        for (let i = 0; i < allQtyInputs.length; i++) {
+            const itemId = $(allQtyInputs[i]).data('item_id');
+            const size = $(allQtyInputs[i]).data('size');
+            handleEnableDisable(itemId, size);
+        }
 
-    // Check enable/disable every time the input is changed
-    $('.qty_input').change(function() {
-        var itemId = $(this).data('item_id');
-        // Check for size to handle enabling or disabling the buttons
-        var size = $(this).data('size');
-        handleEnableDisable(itemId, size);
+        $('.qty_input').change(function () {
+            const itemId = $(this).data('item_id');
+            const size = $(this).data('size');
+            handleEnableDisable(itemId, size);
+        });
+
+        $('.increment-qty').click(function (e) {
+            e.preventDefault();
+            const itemId = $(this).data('item_id');
+            const size = $(this).data('size');
+            const input = $(this).closest('.input-group').find('.qty_input');
+            let currentValue = parseInt(input.val(), 10);
+
+            if (currentValue < 99) {
+                const newValue = currentValue + 1;
+                if (typeof size !== 'undefined') {
+                    $(`.input-group-${itemId} input[data-size='${size}']`).val(newValue);
+                } else {
+                    $(`.input-group-${itemId} input[name='quantity']`).val(newValue);
+                }
+                handleEnableDisable(itemId, size);
+            }
+        });
+
+        $('.decrement-qty').click(function (e) {
+            e.preventDefault();
+            const itemId = $(this).data('item_id');
+            const size = $(this).data('size');
+            const input = $(this).closest('.input-group').find('.qty_input');
+            let currentValue = parseInt(input.val(), 10);
+
+            if (currentValue > 0) {
+                const newValue = currentValue - 1;
+                if (typeof size !== 'undefined') {
+                    $(`.input-group-${itemId} input[data-size='${size}']`).val(newValue);
+                } else {
+                    $(`.input-group-${itemId} input[name='quantity']`).val(newValue);
+                }
+                handleEnableDisable(itemId, size);
+            }
+        });
     });
 
-    // Increment quantity
-    $('.increment-qty').click(function(e) {
-       e.preventDefault();
-       // Check data attributes when incrementing quantity
-       var itemId = $(this).data('item_id');
-       var size = $(this).data('size');
-       var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
-       if (size) {
-          var allQuantityInputs = $(`.input-group-${itemId} input[data-size='${size}']`);
-       } else {
-          var allQuantityInputs = $(`.input-group-${itemId} input[name='quantity']`);
-       }
-       var currentValue = parseInt($(closestInput).val());
-       $(allQuantityInputs).val(currentValue + 1);
-       
-       // Add size on handling enable/disable
-       handleEnableDisable(itemId, size);
+        // Update quantity on click
+    $('.update-link').click(function (e) {
+        var form = $(this).prev('.update-form');
+        form.submit();
     });
+    // Remove item and reload on click
+    $('.remove-item').click(function (e) {
+        e.preventDefault();  // prevent default link action
 
-    // Decrement quantity
-    $('.decrement-qty').click(function(e) {
-       e.preventDefault();
-       // Check data attributes when incrementing quantity
-       var itemId = $(this).data('item_id');
-       var size = $(this).data('size');
-       var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
-       if (size) {
-          var allQuantityInputs = $(`.input-group-${itemId} input[data-size='${size}']`);
-       } else {
-          var allQuantityInputs = $(`.input-group-${itemId} input[name='quantity']`);
-       }
-       var currentValue = parseInt($(closestInput).val());
-       $(allQuantityInputs).val(currentValue - 1);
-       // Add size on handling enable/disable
-       handleEnableDisable(itemId, size);
+        var csrfToken = "{{ csrf_token }}";
+        var itemId = $(this).data('item-id'); // from data-item-id attribute
+        var size = $(this).data('item_size');
+        var url = `/trolley/remove/${itemId}/`;
+        var data = { 'csrfmiddlewaretoken': csrfToken, 'item_size': size };
+
+        $.post(url, data)
+            .done(function () {
+                location.reload();
+            });
     });
 </script>

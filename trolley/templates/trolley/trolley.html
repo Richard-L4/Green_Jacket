@@ -139,27 +139,4 @@
 </script>
 {% include 'items/includes/quantity_input_script.html' %}
 
-<script>
-    // Update quantity on click
-    $('.update-link').click(function (e) {
-        var form = $(this).prev('.update-form');
-        form.submit();
-    })
-    // Remove item and reload on click
-    $('.remove-item').click(function (e) {
-        e.preventDefault();  // prevent default link action
-
-        var csrfToken = "{{ csrf_token }}";
-        var itemId = $(this).data('item-id'); // from data-item-id attribute
-        var size = $(this).data('item_size');
-        var url = `/trolley/remove/${itemId}/`;
-        var data = { 'csrfmiddlewaretoken': csrfToken, 'item_size': size };
-
-        $.post(url, data)
-            .done(function () {
-                location.reload();
-            });
-    });
-
-</script>
 {% endblock %}
