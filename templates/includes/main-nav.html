@@ -1,17 +1,25 @@
 <div class="collapse navbar-collapse" id="main-nav">
     <ul class="navbar-nav w-auto mx-auto">
+
+        {# Dropdown menu for General Items category #}
         <li class="nav-item dropdown">
+
+            {# Link to 'clubhouse' page shown only if not currently on that page (mobile only) #}
             {% if request.resolver_match.url_name != 'clubhouse' %}
-            <a href="{% url 'clubhouse' %}" id="back-to-main" class="dropdown-item d-block d-lg-none font-weight-bold">CLUBHOUSE
-            </a>
-             <div class="dropdown-divider d-block d-lg-none"></div>
+                <a href="{% url 'clubhouse' %}" id="back-to-main" class="dropdown-item d-block d-lg-none font-weight-bold">
+                    CLUBHOUSE
+                </a>
+                <div class="dropdown-divider d-block d-lg-none"></div>
             {% endif %}
 
+            {# Dropdown toggle link for General Items #}
             <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-items-link"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 General Items
             </a>
-             <div class="dropdown-menu border-0" aria-labelledby="all-items-link">
+
+            {# Dropdown menu items for sorting/filtering General Items #}
+            <div class="dropdown-menu border-0" aria-labelledby="all-items-link">
                 <a href="{% url 'items' %}?sort=price&direction=asc" class="dropdown-item">Price: Low to High</a>
                 <a href="{% url 'items' %}?sort=price&direction=desc" class="dropdown-item">Price: High to Low</a>
                 <a href="{% url 'items' %}?sort=category&direction=asc" class="dropdown-item">Category A-Z</a>
@@ -19,9 +27,10 @@
             </div>
         </li>
 
+        {# Dropdown menu for Clothing category #}
         <li class="nav-item dropdown">
             <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="clothing-link"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Clothing
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="clothing-link">
@@ -31,23 +40,25 @@
             </div>
         </li>
 
+        {# Dropdown menu for Miscellaneous category #}
         <li class="nav-item dropdown">
             <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="miscellaneous-link"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Miscellaneous
             </a>
-           <div class="dropdown-menu border-0" aria-labelledby="miscellaneous-link">
+            <div class="dropdown-menu border-0" aria-labelledby="miscellaneous-link">
                 <a href="{% url 'items' %}?category=baseball-caps" class="dropdown-item">Baseball Caps</a>
                 <a href="{% url 'items' %}?category=badges" class="dropdown-item">Badges</a>
                 <a href="{% url 'items' %}?category=other" class="dropdown-item">Other Items</a>
             </div>
         </li>
 
-          <li class="nav-item">
-    <a class="logo-font font-weight-bold nav-link text-black mr-5" href="{% url 'who_we_are' %}" id="who-we-are-link">
-        Who we are
-    </a>
-</li>
+        {# Single nav item linking to 'Who we are' page #}
+        <li class="nav-item">
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="{% url 'who_we_are' %}" id="who-we-are-link">
+                Who we are
+            </a>
+        </li>
 
     </ul>
 </div>

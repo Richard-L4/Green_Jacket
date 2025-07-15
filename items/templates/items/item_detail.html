@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
+{# Page Header Block - Optional visual space or container at the top #}
 {% block page_header %}
 <div class="container header-container">
     <div class="row">
@@ -9,30 +10,35 @@
 </div>
 {% endblock %}
 
+{# Main Content Block #}
 {% block content %}
 <div class="overlay"></div>
 <div class="container-fluid">
     <div class="row">
-        <!-- Image Column -->
+
+        {# Image Column #}
         <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
             <div class="image-container my-5">
                 {% if item.featured_image %}
-                <a href="{% url 'item_image' item.id %}" target="_blank">
-                    <img class="card-img-top img-fluid" src="{{ item.featured_image.url }}" alt="{{ item.name }}">
-                </a>
+                    <a href="{% url 'item_image' item.id %}" target="_blank">
+                        <img class="card-img-top img-fluid" src="{{ item.featured_image.url }}" alt="{{ item.name }}">
+                    </a>
                 {% else %}
-                <a href="{% url 'item_image' item.id %}">
-                    <img class="card-img-top img-fluid" src="{% static 'images/default.jpg' %}" alt="{{ item.name }}">
-                </a>
+                    <a href="{% url 'item_image' item.id %}">
+                        <img class="card-img-top img-fluid" src="{% static 'images/default.jpg' %}" alt="{{ item.name }}">
+                    </a>
                 {% endif %}
             </div>
         </div>
 
-        <!-- Item Details -->
+        {# Item Details Column #}
         <div class="col-12 col-md-6 col-lg-4">
             <div class="item-details-container no-hover mb-5 mt-md-5 card p-4 bg-white rounded hover-shadow">
+                
                 <h2>{{ item.name }}</h2>
                 <p class="lead mb-0 text-left font-weight-bold">£{{ item.price }}</p>
+
+                {# Category Display #}
                 {% if item.category %}
                 <p class="small mt-1 mb-2">
                     <a class="text-muted" href="{% url 'items' %}?category={{ item.category.name }}">
@@ -40,12 +46,8 @@
                     </a>
                 </p>
                 {% endif %}
-                <!--{% if item.rating %}
-                <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ item.rating }} / 5</small>
-                {% else %}
-                <small class="text-muted"></small>
-                {% endif %}-->
 
+                {# Admin Edit/Delete Buttons #}
                 {% if request.user.is_superuser %}
                 <small class="ml-3">
                     <a href="{% url 'edit_item' item.id %}" class="btn btn-sm btn-primary mr-2">Edit</a>
@@ -55,28 +57,24 @@
 
                 <p class="mt-3">{{ item.description }}</p>
 
+                {# Size Info #}
                 {% if item.has_sizes %}
                 <p><strong>Available Sizes:</strong> XS, S, M, L, XL</p>
                 {% endif %}
 
-                <!-- Save for Later Button -->
+                {# Save for Later Button #}
                 <form id="save-form" method="POST" action="{% url 'toggle_save_item' item.id %}" class="mb-3">
                     {% csrf_token %}
                     <div id="save-click-wrapper" style="display: inline-block;">
                         <button id="save-button" class="btn btn-outline-danger" type="submit"
                             data-authenticated="{{ user.is_authenticated|yesno:'true,false' }}">
-
                             <i id="heart-icon" class="{% if saved %}fas{% else %}far{% endif %} fa-heart"></i>
                             <span id="save-text">{% if saved %}Saved{% else %}Save for Later{% endif %}</span>
                         </button>
                     </div>
                 </form>
 
-
-
-
-
-                <!-- Add to Cart Form -->
+                {# Add to Cart Form #}
                 <form class="form" action="{% url 'add_to_trolley' item.id %}" method="POST">
                     {% csrf_token %}
                     <div class="form-row">
@@ -84,7 +82,7 @@
                         {% if s %}
                         <div class="col-12">
                             <p><strong>Size:</strong></p>
-                            <select class="form-control rounded-0 w-50" name="item_size" id='id_item_size'>
+                            <select class="form-control rounded-0 w-50" name="item_size" id="id_item_size">
                                 <option value="xs">XS</option>
                                 <option value="s">S</option>
                                 <option value="m" selected>M</option>
@@ -93,6 +91,7 @@
                             </select>
                         </div>
                         {% endif %}
+
                         <div class="col-12">
                             <p class="mt-3"><strong>Quantity:</strong></p>
                             <div class="form-group w-50">
@@ -105,7 +104,7 @@
                                         </button>
                                     </div>
                                     <input class="form-control qty_input id_qty_{{ item.id }}" type="number"
-                                        name="quantity" value="1" min="1" max="99" data-item_id="{{ item.id }}">
+                                           name="quantity" value="1" min="1" max="99" data-item_id="{{ item.id }}">
                                     <div class="input-group-append">
                                         <button type="button"
                                             class="increment-qty btn btn-black rounded-0 increment-qty_{{ item.id }}"
@@ -117,6 +116,7 @@
                             </div>
                         </div>
 
+                        {# Buttons: Back to Shop & Add to Bag #}
                         <div class="col{% if s %}-12 mt-2{% endif %}">
                             <a href="{% url 'items' %}" class="btn btn-outline-black rounded-0 mt-5">
                                 <i class="fas fa-chevron-left"></i> Back to Pro Shop
@@ -133,7 +133,7 @@
 
     <hr>
 
-    <!-- Reviews -->
+    {# Reviews Section #}
     <div class="mt-4">
         <h3>Reviews</h3>
 
@@ -152,10 +152,11 @@
         <p>No reviews yet. Be the first to leave one!</p>
         {% endfor %}
 
+        {# Leave Review Button or Prompt to Log In #}
         {% if user.is_authenticated %}
-        {% if not user_review_exists %}
-        <a href="{% url 'add_review' item.id %}" id="open-review-modal" class="btn custom mt-3">Leave a Review</a>
-        {% endif %}
+            {% if not user_review_exists %}
+            <a href="{% url 'add_review' item.id %}" id="open-review-modal" class="btn custom mt-3">Leave a Review</a>
+            {% endif %}
         {% else %}
         <p class="mt-4">
             <a href="{% url 'account_login' %}?next={{ request.path }}" class="btn btn-sm btn-success">Log in</a> to
@@ -163,9 +164,10 @@
         </p>
         {% endif %}
     </div>
+
     <hr>
 
-    <!-- Modal -->
+    {# Modal Review Form - Displayed via JavaScript #}
     {% if user.is_authenticated and not user_review_exists %}
     <div id="modal" class="custom-modal-backdrop" style="display:none;">
         <div class="custom-modal-form">
@@ -186,10 +188,11 @@
 </div>
 {% endblock %}
 
+{# JavaScript Block - For custom interactivity #}
 {% block postloadjs %}
 {{ block.super }}
 <script src="{% static 'JS/save-toggle-script.js' %}"></script>
 
+{# Quantity increment/decrement buttons #}
 {% include 'items/includes/quantity_input_script.html' %}
-
 {% endblock %}

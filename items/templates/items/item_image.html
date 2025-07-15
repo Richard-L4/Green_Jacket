@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!-- Main wrapper for the About Page -->
 <div id="about-page">
+
+    <!-- Display the item's featured image -->
     <img src="{{ item.featured_image.url }}" alt="{{ item.name }}" class="img-fluid centered-image">
+
+    <!-- Button to go back to the item detail page -->
     <a href="{% url 'item_detail' item.id %}" class="btn custom centered-button custom">Back to Item</a>
+    
 </div>
 {% endblock %}

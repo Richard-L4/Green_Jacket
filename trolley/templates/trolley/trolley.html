@@ -2,7 +2,7 @@
 {% load static %}
 {% load trolley_tools %}
 
-
+{# Block for page header, currently empty placeholder container #}
 {% block page_header %}
 <div class="container header-container">
     <div class="row">
@@ -13,8 +13,12 @@
 
 {% block content %}
 <div class="overlay"></div>
+
+{# Main flex container to fill vertical height #}
 <div class="d-flex flex-column min-vh-100">
     <main class="flex-grow-1">
+
+        {# Page Title Section #}
         <div class="row">
             <div class="col">
                 <hr>
@@ -23,21 +27,29 @@
             </div>
         </div>
 
+        {# Main content area #}
         <div class="row">
             <div class="col">
+
+                {# Check if trolley has any items #}
                 {% if trolley_items %}
+
+                {# Mobile layout: block visible only on small screens (d-block d-md-none) #}
                 <div class="d-block d-md-none">
                     <div class="row">
                         <div class="col">
                             {% include "trolley/trolley-total.html" %}
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col">
                             {% include "trolley/checkout-buttons.html" %}
                             <p class="text-muted mb-5">A summary of your trolley contents is below</p>
                         </div>
                     </div>
+
+                    {# Loop over each trolley item for mobile display #}
                     {% for item in trolley_items %}
                     <div class="row">
                         <div class="col-12 col-sm-6 mb-2">
@@ -54,6 +66,7 @@
                             {% include "trolley/quantity-form.html" %}
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col">
                             <hr>
@@ -62,6 +75,7 @@
                     {% endfor %}
                 </div>
 
+                {# Desktop layout: table visible on medium+ screens (d-none d-md-block) #}
                 <div class="table-responsive rounded d-none d-md-block">
                     <table class="table table-sm table-bordered">
                         <thead class="thead-light">
@@ -74,6 +88,7 @@
                             </tr>
                         </thead>
 
+                        {# Loop over trolley items for desktop table #}
                         {% for item in trolley_items %}
                         <tr>
                             <td class="p-3 w-25">
@@ -93,21 +108,27 @@
                             </td>
                         </tr>
                         {% endfor %}
+
+                        {# Trolley total row spanning all columns #}
                         <tr>
                             <td colspan="5" class="pt-5 text-right">
                                 {% include "trolley/trolley-total.html" %}
                             </td>
                         </tr>
+
+                        {# Checkout buttons row #}
                         <tr>
                             <td colspan="5" class="text-right no-border">
                                 <div class="checkout-buttons-wrapper">
-                                {% include "trolley/checkout-buttons.html" %}
+                                    {% include "trolley/checkout-buttons.html" %}
                                 </div>
                             </td>
                         </tr>
                     </table>
                 </div>
+
                 {% else %}
+                {# Message and link if trolley is empty #}
                 <p class="lead mb-5">Your trolley is empty.</p>
                 <a href="{% url 'items' %}" class="btn btn-outline-black rounded-0 btn-lg">
                     <span class="icon">
@@ -119,24 +140,28 @@
             </div>
         </div>
 
-        <!-- Back To Top Button: inside main -->
+        {# Back To Top Button inside main #}
         <div class="btt-button shadow-sm rounded-0 border border-black mt-3">
             <a class="btt-link d-flex h-100" href="#">
                 <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
             </a>
         </div>
+
     </main>
 </div>
 {% endblock %}
 
-
 {% block postloadjs %}
 {{ block.super }}
-<script>
-    $('.btt-link').click(function (e) {
-        window.scrollTo(0, 0)
-    })
-</script>
-{% include 'items/includes/quantity_input_script.html' %}
 
+<script>
+    // Scroll to top when Back To Top button is clicked
+    $('.btt-link').click(function (e) {
+        e.preventDefault();  // Prevent default anchor behavior
+        window.scrollTo(0, 0);
+    });
+</script>
+
+{# Include quantity input enhancement script #}
+{% include 'items/includes/quantity_input_script.html' %}
 {% endblock %}

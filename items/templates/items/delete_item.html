@@ -1,28 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
+<!-- Item Deletion Confirmation Container -->
 <div id="item">
   <div id="item-box">
+    <!-- Header for deletion confirmation -->
     <h3 class="mb-3 text-danger">Confirm Item Deletion</h3>
 
+    <!-- Confirmation message with item name -->
     <p class="mb-4">
       Are you sure you want to permanently delete the item
       <strong class="no-wrap">"{{ item.name }}"</strong>?
     </p>
 
+    <!-- Form for deletion confirmation -->
     <form method="POST">
       {% csrf_token %}
       <div class="d-flex justify-content-center align-items-start flex-wrap">
+        <!-- Submit button to delete the item -->
         <button type="submit" class="btn btn-danger fw-semibold px-4 mr-3 mb-2">
           Delete Item
         </button>
+        <!-- Cancel button redirects to item detail page -->
         <a href="{% url 'item_detail' item.pk %}" class="btn btn-secondary fw-semibold px-4">
           Cancel
         </a>
       </div>
     </form>
-
-
   </div>
 </div>
 {% endblock %}

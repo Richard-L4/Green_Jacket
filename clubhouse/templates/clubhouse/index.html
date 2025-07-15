@@ -1,29 +1,35 @@
 {% extends "base.html" %}
-
 {% load static %}
 
+{# Page Header Block: Used for spacing or layout setup above content #}
 {% block page_header %}
 <div class="container header-container">
     <div class="row">
-        <div class="col"></div>
+        <div class="col"></div>  {# Empty column, reserved for spacing or design purposes #}
     </div>
 </div>
 {% endblock %}
 
+{# Main Content Block: Hero section for homepage with call to action #}
 {% block content %}
 <div class="container h-100">
     <div class="row h-100">
-        <div class="col-7 col-md-6 my-auto">
+        <div class="col-7 col-md-6 my-auto">  {# Responsive column centered vertically #}
             <div class="home-title">
+                {# Site Heading: Brand identity #}
                 <h1 class="mb-0">Masters Gifts</h1>
+
+                {# Subtitle below main title #}
                 <h5 class="tagline">Classic Masters style gifts in Augusta green.</h5>
             </div>
+
+            {# Call-to-action button: Link to items page (Pro Shop) #}
             <div class="my-5">
                 <h4>
-                    <a href="{% url 'items' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Visit the Pro Shop</a>
-
+                    <a href="{% url 'items' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">
+                        Visit the Pro Shop
+                    </a>
                 </h4>
-               
             </div>
         </div>
     </div>

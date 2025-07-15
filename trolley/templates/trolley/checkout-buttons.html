@@ -1,9 +1,16 @@
+ 
+{#  Link button to go back to the items page with a left chevron icon. #}
+
 <a href="{% url 'items' %}" class="btn btn-outline-black rounded-0 btn-lg">
     <span class="icon">
         <i class="fas fa-chevron-left"></i>
     </span>
     <span class="text-uppercase">Keep Shopping</span>
 </a>
+
+
+{#  Link button to proceed to the checkout page with a lock icon. #}
+
 <a href="{% url 'checkout' %}" class="btn btn-black rounded-0 btn-lg">
     <span class="text-uppercase">Secure Payment</span>
     <span class="icon">

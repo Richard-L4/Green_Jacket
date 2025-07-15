@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
+{# Page header block (optional header section) #}
 {% block page_header %}
 <div class="container header-container">
     <div class="row">
@@ -10,8 +11,13 @@
 {% endblock %}
 
 {% block content %}
+{# Overlay for aesthetic background effect (if used in CSS) #}
 <div class="overlay"></div>
+
+{# Full-page container with flex column layout #}
 <div class="container-fluid min-vh-100 d-flex flex-column">
+
+    {# Title Section #}
     <div class="row">
         <div class="col text-center mt-5">
             <h2 class="logo-font">Items</h2>
@@ -19,124 +25,128 @@
         </div>
     </div>
 
-    <!-- Sort and item count row -->
+    {# Sorting and item count display #}
     <div class="row mt-1 mb-2">
+        {# Sort dropdown on the right (desktop) or bottom (mobile) #}
         <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
             <div class="sort-select-wrapper w-50">
                 <select id="sort-selector"
                     class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
                     <option value="reset">Sort by</option>
-                    <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (Low to
-                        High)</option>
-                    <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (High to
-                        Low)</option>
+                    <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (Low to High)</option>
+                    <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (High to Low)</option>
                     <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
-                    <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)
-                    </option>
-                    <option value="category_asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>Category
-                        (A-Z)</option>
-                    <option value="category_desc" {% if current_sorting == 'category_desc' %}selected{% endif %}>Category
-                        (Z-A)</option>
+                    <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
+                    <option value="category_asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>Category (A-Z)</option>
+                    <option value="category_desc" {% if current_sorting == 'category_desc' %}selected{% endif %}>Category (Z-A)</option>
                 </select>
             </div>
         </div>
+
+        {# Item count and filter reset button #}
         <div class="col-12 col-md-6 order-md-first">
             <p class="text-muted mt-3 text-center text-md-left">
                 {% if search_term or current_categories or current_sorting != 'None_None' %}
-                <span class="small"><a href="{% url 'items' %}" class="btn btn-sm btn-success">Items Home</a></span>
+                <span class="small">
+                    <a href="{% url 'items' %}" class="btn btn-sm btn-success">Items Home</a>
+                </span>
                 {% endif %}
                 {{ items|length }} Items{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
             </p>
         </div>
     </div>
 
+    {# Product grid #}
     <div class="row">
         <div class="item-container col-10 offset-1">
-            <div class="row mt-1 mb-2"></div>
+            <div class="row mt-1 mb-2"></div> {# Spacer row #}
             <div class="row">
                 {% for item in items %}
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                     <div class="card h-100 bg-white hover-shadow">
-                        {% if item.featured_image %}
+                        {# Product image with fallback #}
                         <a href="{% url 'item_detail' item.id %}">
-                            <img class="card-img-top img-fluid" src="{{ item.featured_image.url }}"
-                                alt="{{ item.name }}">
+                            <img class="card-img-top img-fluid" 
+                                 src="{% if item.featured_image %}{{ item.featured_image.url }}{% else %}{% static 'images/default.jpg' %}{% endif %}"
+                                 alt="{{ item.name }}">
                         </a>
-                        {% else %}
-                        <a href="{% url 'item_detail' item.id %}">
-                            <img class="card-img-top img-fluid" src="{% static 'images/default.jpg' %}"
-                                alt="{{ item.name }}">
-                        </a>
-                        {% endif %}
+
+                        {# Product name #}
                         <div class="card-body pb-0">
                             <p class="mb-0">{{ item.name }}</p>
                         </div>
+
+                        {# Product price (and optional rating block) #}
                         <div class="card-footer bg-white pt-0 border-0 text-left">
                             <div class="row">
                                 <div class="col">
                                     <p class="lead mb-0 text-left font-weight-bold">£{{ item.price }}</p>
-                                    <!--{% if item.rating %}
-                                                <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ item.rating }} / 5</small>
-                                            {% else %}
-                                                <small class="text-muted"></small>
-                                            {% endif %}-->
+                                    {# Uncomment this block to show rating if available
+                                    {% if item.rating %}
+                                    <small class="text-muted">
+                                        <i class="fas fa-star mr-1"></i>{{ item.rating }} / 5
+                                    </small>
+                                    {% endif %}
+                                    #}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                {# Responsive horizontal rule every X cards #}
                 {% if forloop.counter|divisibleby:1 %}
-                <div class="col-12 d-sm-none mb-5">
-                    <hr>
-                </div>
+                <div class="col-12 d-sm-none mb-5"><hr></div>
                 {% endif %}
                 {% if forloop.counter|divisibleby:2 %}
-                <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
-                    <hr>
-                </div>
+                <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5"><hr></div>
                 {% endif %}
                 {% if forloop.counter|divisibleby:3 %}
-                <div class="col-12 d-none d-lg-block d-xl-none mb-5">
-                    <hr>
-                </div>
+                <div class="col-12 d-none d-lg-block d-xl-none mb-5"><hr></div>
                 {% endif %}
                 {% if forloop.counter|divisibleby:4 %}
-                <div class="col-12 d-none d-xl-block mb-5">
-                    <hr>
-                </div>
+                <div class="col-12 d-none d-xl-block mb-5"><hr></div>
                 {% endif %}
                 {% endfor %}
             </div>
         </div>
     </div>
 </div>
-  <div class="btt-button shadow-sm rounded-0 border border-black">
-        <a class="btt-link d-flex h-100">
-            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
-        </a>	
-    </div>
-{% endblock %}
-{% block postloadjs %}
-  {{ block.super }}
-  <script>
-    $(function() {
-      $('.btt-link').click(function(e) {
-        window.scrollTo(0, 0);
-      });
 
-      $('#sort-selector').change(function() {
-        var selected = $(this).val();
-        var currentUrl = new URL(window.location);
-        if (selected === 'reset') {
-          currentUrl.searchParams.delete('sort');
-          currentUrl.searchParams.delete('direction');
-        } else {
-          var parts = selected.split('_');
-          currentUrl.searchParams.set('sort', parts[0]);
-          currentUrl.searchParams.set('direction', parts[1]);
-        }
-        window.location = currentUrl.toString();
-      });
+{# Back-to-top button #}
+<div class="btt-button shadow-sm rounded-0 border border-black">
+    <a class="btt-link d-flex h-100">
+        <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+    </a>
+</div>
+{% endblock %}
+
+{# JS for sorting and scroll-to-top #}
+{% block postloadjs %}
+{{ block.super }}
+<script>
+    $(function () {
+        // Scroll to top on back-to-top button click
+        $('.btt-link').click(function (e) {
+            window.scrollTo(0, 0);
+        });
+
+        // Handle sort selection
+        $('#sort-selector').change(function () {
+            var selected = $(this).val();
+            var currentUrl = new URL(window.location);
+
+            if (selected === 'reset') {
+                currentUrl.searchParams.delete('sort');
+                currentUrl.searchParams.delete('direction');
+            } else {
+                var parts = selected.split('_');
+                currentUrl.searchParams.set('sort', parts[0]);
+                currentUrl.searchParams.set('direction', parts[1]);
+            }
+
+            window.location = currentUrl.toString();
+        });
     });
-  </script>
+</script>
 {% endblock %}

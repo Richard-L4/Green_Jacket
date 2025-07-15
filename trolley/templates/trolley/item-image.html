@@ -1,7 +1,15 @@
 {% load static %}
 
+{# Display item images or default image if feature image unavailabel #}
+
 {% if item.featured_image %}
-    <img class="img-fluid rounded" src="{{ item.featured_image.url }}" alt="{{ item.name }}">
+    <img 
+        class="img-fluid rounded" 
+        src="{{ item.featured_image.url }}" 
+        alt="{{ item.name }}">
 {% else %}
-    <img class="img-fluid rounded" src="{% static 'images/default.jpg' %}" alt="{{ item.name }}">
+    <img 
+        class="img-fluid rounded" 
+        src="{% static 'images/default.jpg' %}" 
+        alt="{{ item.name }}">
 {% endif %}

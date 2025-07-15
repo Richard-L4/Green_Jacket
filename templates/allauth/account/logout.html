@@ -2,24 +2,34 @@
 {% load static %}
 {% load i18n %}
 
+{# Set the page title for the browser tab #}
 {% block head_title %}{% trans "Log Out" %}{% endblock %}
 
 {% block inner_content %}
-<div id="logout">
-  <div class="form-box">
-<hr>
-<h2 class="logo-font mb-4">{% trans "Log Out" %}</h2>
-<hr>
-<p>{% trans 'Are you sure you want to log out?' %}</p>
+<div class="form-box">
 
-<form method="post" action="{% url 'account_logout' %}">
-  {% csrf_token %}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-  {% endif %}
-  <a class="btn btn-outline-black rounded-0" href="{% url 'clubhouse' %}">Cancel</a>
-  <button type="submit">{% trans 'Log Out' %}</button>
-</form>
- </div>
+  <hr>
+  <h2 class="logo-font mb-4">{% trans "Log Out" %}</h2>
+  <hr>
+
+  {# Confirmation message for logging out #}
+  <p>{% trans 'Are you sure you want to log out?' %}</p>
+
+  {# Form to submit the logout POST request #}
+  <form method="post" action="{% url 'account_logout' %}">
+    {% csrf_token %}
+
+    {# Include redirect field if provided to redirect user after logout #}
+    {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+    {% endif %}
+
+    {# Cancel button redirects back to the 'clubhouse' page #}
+    <a class="btn btn-outline-black rounded-0" href="{% url 'clubhouse' %}">Cancel</a>
+
+    {# Submit button to confirm logout #}
+    <button type="submit">{% trans 'Log Out' %}</button>
+  </form>
+
 </div>
 {% endblock %}

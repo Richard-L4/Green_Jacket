@@ -1,14 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
+<!-- Edit Review Page Wrapper -->
 <div id="edit-page">
   <div id="edit-box">
     <h2>Edit Your Review</h2>
+
+    <!-- Review Edit Form -->
     <form method="POST">
       {% csrf_token %}
+      
+      <!-- Textarea pre-filled with existing review text -->
       <div class="form-group">
         <textarea name="review_text" rows="5" class="form-control" required>{{ review.review_text }}</textarea>
       </div>
+
+      <!-- Action Buttons: Submit and Cancel -->
       <div class="button-row">
         <button type="submit">Update Review</button>
         <a href="{% url 'item_detail' pk=item.id %}">Cancel</a>
