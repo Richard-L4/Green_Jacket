@@ -13,8 +13,9 @@ from django.http import JsonResponse
 
 
 def all_items(request):
-    """ Show all items, including sorting, search, and category filter """
-
+    """
+    View to return all items, including sorting, search, and category filter.
+    """
     items = Item.objects.all()
     query = None
     categories = None
@@ -23,6 +24,7 @@ def all_items(request):
     current_category = None
 
     if request.GET:
+        # Handle sorting
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
             sort = sortkey
@@ -37,19 +39,22 @@ def all_items(request):
                     sortkey = f'-{sortkey}'
             items = items.order_by(sortkey)
 
+        # Handle category filtering (including subcategories)
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
             category_objs = Category.objects.filter(
-                 Q(name__in=categories) | Q(parent__name__in=categories)
+                Q(name__in=categories) | Q(parent__name__in=categories)
             )
             items = items.filter(category__in=category_objs)
             current_category = category_objs.select_related('parent')
 
+        # Handle search
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
                 messages.error(
-                    request, "You didn't enter any search criteria!")
+                    request, "You didn't enter any search criteria!"
+                )
                 return redirect(reverse('items'))
 
             queries = (
@@ -71,13 +76,18 @@ def all_items(request):
 
 
 def item_detail(request, pk):
+    """
+    View to show a single item with reviews and save status.
+    """
     item = get_object_or_404(Item, pk=pk)
     reviews = item.reviews.select_related('user').all()
 
+    # Check if user has already submitted a review
     user_review_exists = False
     if request.user.is_authenticated:
         user_review_exists = reviews.filter(user=request.user).exists()
 
+    # Check if item is already saved by user
     saved = (
         request.user.is_authenticated and
         SavedItem.objects.filter(user=request.user, item=item).exists()
@@ -96,13 +106,18 @@ def item_detail(request, pk):
 
 
 def item_image(request, pk):
+    """
+    View to display item image (standalone).
+    """
     item = get_object_or_404(Item, pk=pk)
     return render(request, 'items/item_image.html', {'item': item})
 
 
 @staff_member_required
 def add_item(request):
-    """ Add a item to the store """
+    """
+    View to allow superusers to add a new item.
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
@@ -121,16 +136,14 @@ def add_item(request):
     else:
         form = ItemForm()
 
-    template = 'items/add_item.html'
-    context = {
-        'form': form,
-    }
-
-    return render(request, template, context)
+    return render(request, 'items/add_item.html', {'form': form})
 
 
-@staff_member_required  # Only staff/superusers can access this
+@staff_member_required
 def edit_item(request, item_id):
+    """
+    View to edit an existing item.
+    """
     item = get_object_or_404(Item, pk=item_id)
 
     if request.method == 'POST':
@@ -150,18 +163,25 @@ def edit_item(request, item_id):
 
 @staff_member_required
 def delete_item(request, pk):
+    """
+    View to delete an item after confirmation.
+    """
     item = get_object_or_404(Item, pk=pk)
     if request.method == "POST":
         item.delete()
-        return redirect('items')  # or wherever you want after deleting
-   
-    return render(request, 'items/delete_item.html', {'item': item}) 
+        return redirect('items')
+
+    return render(request, 'items/delete_item.html', {'item': item})
 
 
 @login_required
 def add_review(request, pk):
+    """
+    View to add a review for a given item.
+    """
     item = get_object_or_404(Item, pk=pk)
 
+    # Prevent duplicate reviews
     if Review.objects.filter(item=item, user=request.user).exists():
         messages.warning(request, "You've already reviewed this item.")
         return redirect('item_detail', pk=pk)
@@ -181,6 +201,9 @@ def add_review(request, pk):
 
 @login_required
 def edit_review(request, pk, review_id):
+    """
+    View to edit an existing review by the logged-in user.
+    """
     item = get_object_or_404(Item, pk=pk)
     review = get_object_or_404(Review, id=review_id, user=request.user)
 
@@ -201,6 +224,9 @@ def edit_review(request, pk, review_id):
 
 @login_required
 def delete_review(request, pk, review_id):
+    """
+    View to delete a review by the logged-in user.
+    """
     review = get_object_or_404(Review, id=review_id, user=request.user)
 
     if request.method == 'POST':
@@ -214,21 +240,26 @@ def delete_review(request, pk, review_id):
     })
 
 
-
 @require_POST
 @login_required
 def toggle_save_item(request, item_id):
+    """
+    Toggle save/unsave for an item by the logged-in user.
+    Returns a JSON response indicating the new state.
+    """
     item = get_object_or_404(Item, id=item_id)
     user = request.user
 
-    saved_item, created = SavedItem.objects.get_or_create(user=user, item=item)
+    saved_item, created = SavedItem.objects.get_or_create(
+        user=user, item=item
+    )
 
     if not created:
-        # Already saved, so remove it
+        # Item already saved, so unsave it
         saved_item.delete()
         saved = False
     else:
-        # Newly saved
+        # Item was not saved, now saved
         saved = True
 
     return JsonResponse({'saved': saved})

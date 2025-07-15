@@ -5,15 +5,21 @@ from items.models import Item
 
 
 def trolley_contents(request):
-
+    """
+    Retrieve the contents of the trolley from the session,
+    calculate totals, delivery costs, and prepare the context
+    dictionary for rendering in templates.
+    """
     trolley_items = []
     total = 0
     item_count = 0
     trolley = request.session.get('trolley', {})
 
+    # Iterate over items in the trolley session data
     for item_id, item_data in trolley.items():
 
         if isinstance(item_data, int):
+            # Simple item without size variations
             item = get_object_or_404(Item, pk=item_id)
             total += item_data * item.price
             item_count += item_data
@@ -24,6 +30,7 @@ def trolley_contents(request):
             })
 
         else:
+            # Item with size variations
             item = get_object_or_404(Item, pk=item_id)
             for size, quantity in item_data['items_by_size'].items():
                 total += quantity * item.price
@@ -35,12 +42,13 @@ def trolley_contents(request):
                     'size': size,
                 })
 
+    # Calculate delivery cost based on total and free delivery threshold
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
         free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
     else:
-        delivery = 0
-        free_delivery_delta = 0
+        delivery = Decimal('0')
+        free_delivery_delta = Decimal('0')
 
     grand_total = delivery + total
 

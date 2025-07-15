@@ -8,8 +8,10 @@ from django_countries.fields import CountryField
 
 class UserProfile(models.Model):
     """
-    A user profile model for maintaining default
-    delivery information and order history
+    A user profile model for maintaining default delivery information
+    and order history.
+
+    Linked one-to-one with Django's built-in User model.
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     default_phone_number = models.CharField(max_length=20, null=True, blank=True)
@@ -21,16 +23,24 @@ class UserProfile(models.Model):
     default_country = CountryField(blank_label='Country', null=True, blank=True)
 
     def __str__(self):
+        """
+        String representation of the user profile,
+        returning the associated user's username.
+        """
         return self.user.username
-    
-    
+
+
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     """
-    Create or update the user profile
+    Signal to create or update the UserProfile whenever a User instance
+    is created or saved.
+
+    - If a new User is created, create a corresponding UserProfile.
+    - For existing Users, just save the associated UserProfile.
     """
     if created:
         UserProfile.objects.create(user=instance)
-    # Existing users: just save the profile
-    instance.userprofile.save()
-    
+    else:
+        # Save the profile for existing users on update
+        instance.userprofile.save()

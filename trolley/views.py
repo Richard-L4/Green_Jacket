@@ -1,31 +1,33 @@
-from django.shortcuts import (render, redirect, reverse,
-                              HttpResponse, get_object_or_404)
+from django.shortcuts import (
+    render, redirect, reverse,
+    HttpResponse, get_object_or_404
+)
 from django.contrib import messages
 
 from items.models import Item
 
 
 def view_trolley(request):
-    """ A view that renders the trolley contents page """
-
+    """Render the shopping trolley contents page."""
     return render(request, 'trolley/trolley.html')
 
 
 def add_to_trolley(request, item_id):
-    """ Add a quantity of the specified product to the shopping trolley """
+    """
+    Add a quantity of the specified product to the shopping trolley.
 
+    Handles products with and without size variations.
+    """
     item = get_object_or_404(Item, pk=item_id)
-
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
-    size = None
-    if 'item_size' in request.POST:
-        size = request.POST['item_size']
+    size = request.POST.get('item_size', None)
     trolley = request.session.get('trolley', {})
 
     if size:
-        if item_id in list(trolley.keys()):
-            if size in trolley[item_id]['items_by_size'].keys():
+        # Item has size variations
+        if item_id in trolley:
+            if size in trolley[item_id]['items_by_size']:
                 trolley[item_id]['items_by_size'][size] += quantity
                 messages.success(
                     request,
@@ -45,7 +47,8 @@ def add_to_trolley(request, item_id):
                 f'Added size {size.upper()} {item.name} to your trolley'
             )
     else:
-        if item_id in list(trolley.keys()):
+        # Item without size variations
+        if item_id in trolley:
             trolley[item_id] += quantity
             messages.success(
                 request,
@@ -64,17 +67,17 @@ def add_to_trolley(request, item_id):
 
 def adjust_trolley(request, item_id):
     """
-    Adjust the quantity of the specified product to the specified amount
+    Adjust the quantity of the specified product to the specified amount.
+
+    Removes the item if quantity is zero or less.
     """
-
     item = get_object_or_404(Item, pk=item_id)
-
     quantity = int(request.POST.get('quantity'))
-    size = None
-    if 'item_size' in request.POST:
-        size = request.POST['item_size']
+    size = request.POST.get('item_size', None)
     trolley = request.session.get('trolley', {})
+
     if size:
+        # Adjust quantity for specific size
         if quantity > 0:
             trolley[item_id]['items_by_size'][size] = quantity
             messages.success(
@@ -83,6 +86,7 @@ def adjust_trolley(request, item_id):
                 f'{trolley[item_id]["items_by_size"][size]}'
             )
         else:
+            # Remove size from trolley
             del trolley[item_id]['items_by_size'][size]
             if not trolley[item_id]['items_by_size']:
                 trolley.pop(item_id)
@@ -91,6 +95,7 @@ def adjust_trolley(request, item_id):
                 f'Removed size {size.upper()} {item.name} from your trolley'
             )
     else:
+        # Adjust quantity for item without size
         if quantity > 0:
             trolley[item_id] = quantity
             messages.success(
@@ -98,6 +103,7 @@ def adjust_trolley(request, item_id):
                 f'Updated {item.name} quantity to {trolley[item_id]}'
             )
         else:
+            # Remove item from trolley
             trolley.pop(item_id)
             messages.success(
                 request,
@@ -109,17 +115,19 @@ def adjust_trolley(request, item_id):
 
 
 def remove_from_trolley(request, item_id):
-    """ Remove the item from the shopping trolley """
+    """
+    Remove the item or specific size variation from the shopping trolley.
 
+    Returns HTTP 200 on success, 500 on error.
+    """
     item = get_object_or_404(Item, pk=item_id)
 
     try:
-        size = None
-        if 'item_size' in request.POST:
-            size = request.POST['item_size']
+        size = request.POST.get('item_size', None)
         trolley = request.session.get('trolley', {})
 
         if size:
+            # Remove specific size from trolley
             del trolley[item_id]['items_by_size'][size]
             if not trolley[item_id]['items_by_size']:
                 trolley.pop(item_id)
@@ -128,6 +136,7 @@ def remove_from_trolley(request, item_id):
                 f'Removed size {size.upper()} {item.name} from your trolley'
             )
         else:
+            # Remove item without size from trolley
             trolley.pop(item_id)
             messages.success(request, f'Removed {item.name} from your trolley')
 

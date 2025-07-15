@@ -6,7 +6,6 @@ from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
-from django.utils.html import strip_tags
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
@@ -24,22 +23,38 @@ logger = logging.getLogger(__name__)
 
 @require_POST
 def cache_checkout_data(request):
+    """
+    Cache checkout data in Stripe PaymentIntent metadata.
+    """
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
-        stripe.PaymentIntent.modify(pid, metadata={
-            'trolley': json.dumps(request.session.get('trolley', {})),
-            'save_info': request.POST.get('save_info'),
-            'username': request.user.username if request.user.is_authenticated else 'anonymous',
-        })
+        stripe.PaymentIntent.modify(
+            pid,
+            metadata={
+                'trolley': json.dumps(request.session.get('trolley', {})),
+                'save_info': request.POST.get('save_info'),
+                'username': (
+                    request.user.username
+                    if request.user.is_authenticated else 'anonymous'
+                ),
+            }
+        )
         return HttpResponse(status=200)
     except Exception as e:
-        messages.error(request, 'Sorry, your payment cannot be processed right now. Please try again later.')
+        messages.error(
+            request,
+            'Sorry, your payment cannot be processed right now. '
+            'Please try again later.'
+        )
         logger.error(f"Stripe metadata update failed: {e}")
         return HttpResponse(content=str(e), status=400)
 
 
 def checkout(request):
+    """
+    Process checkout: display form on GET, create order on POST.
+    """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
@@ -75,7 +90,10 @@ def checkout(request):
                             quantity=item_data,
                         )
                     else:
-                        for size, quantity in item_data['items_by_size'].items():
+                        for size, quantity in item_data[
+                            'items_by_size'
+                                ].items():
+
                             OrderLineItem.objects.create(
                                 order=order,
                                 item=item,
@@ -83,22 +101,36 @@ def checkout(request):
                                 item_size=size,
                             )
                 except Item.DoesNotExist:
-                    messages.error(request, (
-                        "One of the products in your trolley wasn't found in our database. "
-                        "Please call us for assistance!"))
-                    logger.warning(f"Item ID {item_id} not found. Order {order.order_number} deleted.")
+                    messages.error(
+                        request,
+                        "One of the products in your trolley wasn't found "
+                        "in our database. Please call us for assistance!"
+                    )
+                    logger.warning(
+                        f"Item ID {item_id} not found. "
+                        f"Order {order.order_number} deleted."
+                    )
                     order.delete()
                     return redirect(reverse('view_trolley'))
 
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            return redirect(
+                reverse('checkout_success', args=[order.order_number])
+            )
         else:
-            messages.error(request, 'There was an error with your form. Please double check your information.')
+            messages.error(
+                request,
+                'There was an error with your form. '
+                'Please double check your information.'
+            )
 
     else:
         trolley = request.session.get('trolley', {})
         if not trolley:
-            messages.error(request, "There's nothing in your trolley at the moment")
+            messages.error(
+                request,
+                "There's nothing in your trolley at the moment."
+            )
             return redirect(reverse('items'))
 
         current_trolley = trolley_contents(request)
@@ -130,7 +162,11 @@ def checkout(request):
             order_form = OrderForm()
 
         if not stripe_public_key:
-            messages.warning(request, 'Stripe public key is missing. Did you forget to set it in your environment?')
+            messages.warning(
+                request,
+                'Stripe public key is missing. Did you forget to set it '
+                'in your environment?'
+            )
 
         template = 'checkout/checkout.html'
         context = {
@@ -144,7 +180,8 @@ def checkout(request):
 
 def checkout_success(request, order_number):
     """
-    Handle successful checkouts
+    Handle successful checkout: save user info if needed and send
+    confirmation email.
     """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
@@ -168,8 +205,11 @@ def checkout_success(request, order_number):
             if user_profile_form.is_valid():
                 user_profile_form.save()
 
-    messages.success(request, f'Order successfully processed! '
-                             f'Your order number is {order_number}. A confirmation email will be sent to {order.email}.')
+    messages.success(
+        request,
+        f'Order successfully processed! Your order number is {order_number}. '
+        f'A confirmation email will be sent to {order.email}.'
+    )
 
     # Render email templates
     subject = render_to_string(
@@ -195,7 +235,10 @@ def checkout_success(request, order_number):
         )
     except Exception as e:
         logger.error(f"Email send failed for order {order_number}: {e}")
-        messages.warning(request, "Order placed, but confirmation email could not be sent.")
+        messages.warning(
+            request,
+            "Order placed, but confirmation email could not be sent."
+        )
 
     if 'trolley' in request.session:
         del request.session['trolley']

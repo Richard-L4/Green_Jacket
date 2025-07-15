@@ -3,16 +3,31 @@ from .models import UserProfile
 
 
 class UserProfileForm(forms.ModelForm):
+    """
+    Form for updating user profile information.
+    
+    Excludes the 'user' field because it's managed separately.
+    Adds placeholders and CSS classes to fields,
+    removes labels, and sets autofocus on the phone number field.
+    """
+
     class Meta:
         model = UserProfile
         exclude = ('user',)
 
     def __init__(self, *args, **kwargs):
         """
-        Add placeholders and classes, remove auto-generated
-        labels and set autofocus on first field
+        Customize form fields after initialization.
+
+        - Add placeholders for better UX.
+        - Mark required fields with an asterisk (*).
+        - Set autofocus on phone number field.
+        - Add consistent CSS classes to all input widgets.
+        - Remove auto-generated labels for cleaner look.
         """
         super().__init__(*args, **kwargs)
+
+        # Dictionary mapping fields to their placeholder texts
         placeholders = {
             'default_phone_number': 'Phone Number',
             'default_postcode': 'Postal Code',
@@ -22,13 +37,21 @@ class UserProfileForm(forms.ModelForm):
             'default_county': 'County, State or Locality',
         }
 
+        # Set autofocus on the phone number input
         self.fields['default_phone_number'].widget.attrs['autofocus'] = True
-        for field in self.fields:
-            if field != 'default_country':
-                if self.fields[field].required:
-                    placeholder = f'{placeholders[field]} *'
+
+        for field_name, field in self.fields.items():
+            # Skip placeholder for default_country field
+            if field_name != 'default_country':
+                # Add '*' to placeholder if field is required
+                if field.required:
+                    placeholder = f"{placeholders[field_name]} *"
                 else:
-                    placeholder = placeholders[field]
-                self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = 'border-black rounded-0 profile-form-input'
-            self.fields[field].label = False
+                    placeholder = placeholders[field_name]
+                field.widget.attrs['placeholder'] = placeholder
+
+            # Add CSS classes for styling all fields uniformly
+            field.widget.attrs['class'] = 'border-black rounded-0 profile-form-input'
+
+            # Remove field labels since placeholders are used
+            field.label = False

@@ -25,7 +25,8 @@ class ItemAdmin(admin.ModelAdmin):
 
     def image_tag(self, obj):
         if obj.featured_image:
-            return format_html('<img src="{}" width="50" />', obj.featured_image.url)
+            img = obj.featured_image.url
+            return format_html('<img src="{}" width="50" />', img)
         return "-"
     image_tag.short_description = 'Image'
 
