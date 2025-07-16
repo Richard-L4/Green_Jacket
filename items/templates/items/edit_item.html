@@ -15,7 +15,7 @@
     <div class="overlay"></div>
 
     <!-- Main Container -->
-    <div class="container">
+    <div class="container container-fluid min-vh-100 d-flex flex-column">
         <div class="row">
             <!-- Section Heading -->
             <div class="col-12 col-md-6">
@@ -32,16 +32,33 @@
                 <!-- Item Edit Form -->
                 <form method="POST" action="{% url 'edit_item' item.id %}" class="form mb-2" enctype="multipart/form-data">
                     {% csrf_token %}
-                    
-                    <!-- Loop through form fields -->
+
                     {% for field in form %}
                         {% if field.name != 'image' %}
                             {{ field|as_crispy_field }}
                         {% else %}
-                            <!-- Custom rendering for the image upload field -->
+                            <!-- Existing Image Preview -->
+                            {% if item.featured_image %}
+                                <div class="mb-3">
+                                    <p><strong>Current Image:</strong></p>
+                                    <img id="current-image" src="{{ item.featured_image.url }}" alt="Current item image" class="img-fluid" style="max-height: 200px;">
+                                </div>
+                            {% endif %}
+
+                            <!-- New Image Upload Field -->
                             <div class="form-group">
-                                <label for="new-image">Image</label>
-                                <input type="file" name="image" class="form-control" id="new-image">
+                                <label for="new-image">Change Image</label>
+                                <input type="file" name="image" class="form-control" id="new-image" accept="image/*">
+                            </div>
+
+                            <!-- New Image Preview Area (shows current image initially) -->
+                            <div class="mb-3" id="preview-container" style="display: none;">
+                                <p><strong>Selected New Image:</strong></p>
+                                <img id="new-image-preview" 
+                                     src="{% if item.featured_image %}{{ item.featured_image.url }}{% else %}{% static 'images/default.jpg' %}{% endif %}" 
+                                     class="img-fluid" 
+                                     style="max-height: 200px;" 
+                                     alt="Preview of selected image">
                             </div>
                         {% endif %}
                     {% endfor %}
@@ -55,22 +72,12 @@
                         <button class="btn btn-black rounded-0" type="submit">Update Item</button>
                     </div>
                 </form>
-            </div>            
+            </div>
         </div>
     </div>
 {% endblock %}
 
 {% block postloadjs %}
     {{ block.super }}
-    <!-- Script to preview uploaded image filename -->
-    <script>
-        $('#new-image').change(function() {
-            var file = $('#new-image')[0].files[0];
-            if (file) {
-                $('#filename').text(`Image will be set to: ${file.name}`);
-            } else {
-                $('#filename').text('');
-            }
-        });
-    </script>
+    <script src="{% static 'JS/save-toggle-script.js' %}"></script>
 {% endblock %}

@@ -4,7 +4,7 @@ from django.shortcuts import render
 
 
 def index(request):
-    """ 
+    """
     A view to return the clubhouse index (home) page.
     """
     return render(request, 'clubhouse/index.html')

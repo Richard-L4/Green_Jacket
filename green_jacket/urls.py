@@ -7,7 +7,7 @@ from django.contrib import admin
 from django.urls import path, include
 from clubhouse import views
 
-# For serving static files in development
+# For main url paths
 from django.conf import settings
 from django.conf.urls.static import static
 

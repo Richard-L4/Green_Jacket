@@ -56,7 +56,7 @@
         </div>
     </div>
 
-    {# Product grid #}
+    {# Item grid #}
     <div class="row">
         <div class="item-container col-10 offset-1">
             <div class="row mt-1 mb-2"></div> {# Spacer row #}
@@ -64,30 +64,30 @@
                 {% for item in items %}
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                     <div class="card h-100 bg-white hover-shadow">
-                        {# Product image with fallback #}
+                        {# Item image with fallback #}
                         <a href="{% url 'item_detail' item.id %}">
                             <img class="card-img-top img-fluid" 
                                  src="{% if item.featured_image %}{{ item.featured_image.url }}{% else %}{% static 'images/default.jpg' %}{% endif %}"
                                  alt="{{ item.name }}">
                         </a>
 
-                        {# Product name #}
+                        {# Item name #}
                         <div class="card-body pb-0">
                             <p class="mb-0">{{ item.name }}</p>
                         </div>
 
-                        {# Product price (and optional rating block) #}
+                        {# Item price (and optional rating block) #}
                         <div class="card-footer bg-white pt-0 border-0 text-left">
                             <div class="row">
                                 <div class="col">
                                     <p class="lead mb-0 text-left font-weight-bold">£{{ item.price }}</p>
-                                    {# Uncomment this block to show rating if available
+                                    
                                     {% if item.rating %}
                                     <small class="text-muted">
                                         <i class="fas fa-star mr-1"></i>{{ item.rating }} / 5
                                     </small>
                                     {% endif %}
-                                    #}
+                                    
                                 </div>
                             </div>
                         </div>
@@ -108,6 +108,11 @@
                 <div class="col-12 d-none d-xl-block mb-5"><hr></div>
                 {% endif %}
                 {% endfor %}
+
+                {# Add one more <hr> if final row is incomplete #}
+                {% if not items|length|divisibleby:4 %}
+                <div class="col-12 mb-5"><hr></div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -123,30 +128,7 @@
 
 {# JS for sorting and scroll-to-top #}
 {% block postloadjs %}
+<script src="{% static 'JS/save-toggle-script.js' %}"></script>
 {{ block.super }}
-<script>
-    $(function () {
-        // Scroll to top on back-to-top button click
-        $('.btt-link').click(function (e) {
-            window.scrollTo(0, 0);
-        });
 
-        // Handle sort selection
-        $('#sort-selector').change(function () {
-            var selected = $(this).val();
-            var currentUrl = new URL(window.location);
-
-            if (selected === 'reset') {
-                currentUrl.searchParams.delete('sort');
-                currentUrl.searchParams.delete('direction');
-            } else {
-                var parts = selected.split('_');
-                currentUrl.searchParams.set('sort', parts[0]);
-                currentUrl.searchParams.set('direction', parts[1]);
-            }
-
-            window.location = currentUrl.toString();
-        });
-    });
-</script>
 {% endblock %}

@@ -35,7 +35,7 @@ class Category(models.Model):
 
 class Item(models.Model):
     """
-    Represents a product/item in the shop.
+    Represents an item in the shop.
     Each item may belong to a category and can include a Cloudinary image.
     """
 
@@ -78,7 +78,7 @@ class SavedItem(models.Model):
 
 class Review(models.Model):
     """
-    Represents a written review for a product by a user.
+    Represents a written review for anvitem by a user.
     Each user can leave only one review per item.
     """
 

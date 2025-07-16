@@ -5,7 +5,7 @@ from .models import UserProfile
 class UserProfileForm(forms.ModelForm):
     """
     Form for updating user profile information.
-    
+
     Excludes the 'user' field because it's managed separately.
     Adds placeholders and CSS classes to fields,
     removes labels, and sets autofocus on the phone number field.

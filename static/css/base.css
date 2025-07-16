@@ -542,12 +542,29 @@ input[name='q']::placeholder {
 
 
 /* Slightly larger container on xl screens */
+/* Between 974px and 1199px */
+@media (min-width: 974px) and (max-width: 1199px) {
+  .container {
+    max-width: 80%;
+  }
+
+  .footer-push-container {
+    min-height: 79vh;
+  }
+}
+
+/* From 1200px and above */
 @media (min-width: 1200px) {
   .container {
     max-width: 80%;
-    min-height: 48vh;;
+    /* other styles if needed */
+  }
+
+  .footer-push-container {
+    min-height: 88vh;
   }
 }
+
 
 /* Allauth form formatting */
 
@@ -663,6 +680,7 @@ input[name='q']::placeholder {
   margin-left: auto;
   margin-right: auto;
 }
+
 
 /* Footer styling */
 footer {
