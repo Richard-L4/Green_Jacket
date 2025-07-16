@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.warn('jQuery is not loaded. Sort and scroll features will not work.');
     }
 });
-
+    // For loading new item image
   $('#new-image').change(function() {
             var file = this.files[0];
             if (file) {
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 reader.onload = function(e) {
                     $('#new-image-preview').attr('src', e.target.result);
                     $('#preview-container').show();
-                }
+                };
                 reader.readAsDataURL(file);
                 $('#filename').text(`Image will be set to: ${file.name}`);
             } else {
