@@ -1,3 +1,14 @@
-<p class="my-0"><strong>{{ item.item.name }}</strong></p>
-<p class="my-0"><strong>Size: </strong>{% if item.item.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
-<p class="my-0 small text-muted">SKU: {{ item.item.sku|upper }}</p>
+{# Display the product name from the item object inside the trolley item #}
+<p class="my-0"><strong>{{ trolley_item.item.name }}</strong></p>
+
+{# Check if the item has sizes enabled #}
+{% if trolley_item.item.has_sizes %}
+    {# If it does, show the selected size in uppercase #}
+    <p class="my-0"><strong>Size:</strong> {{ trolley_item.size|upper }}</p>
+{% else %}
+    {# If not, display "N/A" as size is not applicable #}
+    <p class="my-0"><strong>Size:</strong> N/A</p>
+{% endif %}
+
+{# Show the item's SKU (Stock Keeping Unit) in uppercase as a muted small label #}
+<p class="my-0 small text-muted">SKU: {{ trolley_item.item.sku|upper }}</p>
