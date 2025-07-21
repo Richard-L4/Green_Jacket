@@ -30,7 +30,7 @@ def profile(request):
         form = UserProfileForm(instance=profile)
 
     # Retrieve all orders related to this user profile
-    orders = profile.orders.all()
+    orders = profile.orders.all().order_by('-date')
 
     template = 'profiles/profile.html'
     context = {
