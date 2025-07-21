@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Review modal
+    // --- Review Modal ---
     const modal = document.getElementById('modal');
     const openBtn = document.getElementById('open-review-modal');
     if (openBtn && modal) {
         openBtn.addEventListener('click', function (e) {
             e.preventDefault();
-            modal.style.display = 'flex';
+            modal.style.display = 'flex';  // Show the modal (flex container)
         });
     }
 
-    // Save for Later alert if not logged in
+    // --- Save for Later Alert if User Not Logged In ---
     const saveWrapper = document.getElementById('save-click-wrapper');
     const saveButton = document.getElementById('save-button');
     if (saveButton) {
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Save for Later form
+    // --- Save for Later Form Submission via AJAX ---
     const form = document.getElementById('save-form');
     if (form) {
         const heartIcon = document.getElementById('heart-icon');
@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         form.addEventListener('submit', function (e) {
             e.preventDefault();
+
             const formData = new FormData(form);
             const action = form.getAttribute('action');
 
@@ -49,9 +50,11 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 if (data.saved) {
+                    // Change heart icon to solid and update text
                     heartIcon.classList.replace('far', 'fas');
                     saveText.textContent = 'Saved';
                 } else {
+                    // Change heart icon to outline and update text
                     heartIcon.classList.replace('fas', 'far');
                     saveText.textContent = 'Save for Later';
                 }
@@ -62,45 +65,55 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Scroll to top and sort handling (jQuery section)
+    // --- Scroll to Top and Sort Handling (jQuery-dependent) ---
     if (typeof $ !== 'undefined') {
+        // Scroll to top on clicking "Back to Top" link
         $('.btt-link').click(function (e) {
             window.scrollTo(0, 0);
         });
 
+        // Sorting select change event: updates URL parameters
         $('#sort-selector').change(function () {
             const selected = $(this).val();
             const currentUrl = new URL(window.location);
 
             if (selected === 'reset') {
+                // Remove sort parameters to reset sorting
                 currentUrl.searchParams.delete('sort');
                 currentUrl.searchParams.delete('direction');
             } else {
+                // Extract sort and direction from value and update URL
                 const [sort, direction] = selected.split('_');
                 currentUrl.searchParams.set('sort', sort);
                 currentUrl.searchParams.set('direction', direction);
             }
 
+            // Redirect to updated URL
             window.location = currentUrl.toString();
+        });
+
+        // --- New Item Image Preview Handling ---
+        $('#new-image').change(function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#new-image-preview').attr('src', e.target.result);  // Set preview image src
+                    $('#preview-container').show();  // Show preview container
+                };
+
+                reader.readAsDataURL(file);
+
+                // Show filename under input
+                $('#filename').text(`Image will be set to: ${file.name}`);
+            } else {
+                // Hide preview and clear filename if no file selected
+                $('#preview-container').hide();
+                $('#filename').text('');
+            }
         });
     } else {
         console.warn('jQuery is not loaded. Sort and scroll features will not work.');
     }
 });
-    // For loading new item image
-  $('#new-image').change(function() {
-            var file = this.files[0];
-            if (file) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#new-image-preview').attr('src', e.target.result);
-                    $('#preview-container').show();
-                };
-                reader.readAsDataURL(file);
-                $('#filename').text(`Image will be set to: ${file.name}`);
-            } else {
-                $('#preview-container').hide();
-                $('#filename').text('');
-            }
-        });
-

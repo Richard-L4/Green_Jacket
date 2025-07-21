@@ -154,14 +154,6 @@
 {% block postloadjs %}
 {{ block.super }}
 
-<script>
-    // Scroll to top when Back To Top button is clicked
-    $('.btt-link').click(function (e) {
-        e.preventDefault();  // Prevent default anchor behavior
-        window.scrollTo(0, 0);
-    });
-</script>
-
 {# Include quantity input enhancement script #}
 {% include 'items/includes/quantity_input_script.html' %}
 {% endblock %}
