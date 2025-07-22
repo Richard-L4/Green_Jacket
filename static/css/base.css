@@ -138,6 +138,13 @@ body {
     padding-top: 9.375rem;
 }
 
+/* style for google maps */
+#google-map {
+    width: 100%;
+    border: 0;
+}
+
+
 /* custom hover for itmes page */
 .hover-shadow {
   transition: all 0.3s ease-in-out;
@@ -343,6 +350,21 @@ body {
   padding: 2rem;
   text-align: center;
 }
+
+/* style for current image of edit item */
+#current-image {
+    max-height: 12.5rem;
+}
+
+#preview-container {
+    display: none;
+}
+
+#new-image-preview {
+    max-height: 200px;
+    display: none;
+}
+
 
 
 #item-box {

@@ -44,7 +44,7 @@
                 <div class="mb-3">
                     <p><strong>Current Image:</strong></p>
                     <img id="current-image" src="{{ item.featured_image.url }}" alt="Current item image"
-                         class="img-fluid" style="max-height: 200px;">
+                         class="img-fluid">
                 </div>
                 {% endif %}
 
@@ -55,12 +55,11 @@
                 </div>
 
                 <!-- New Image Preview -->
-                <div class="mb-3" id="preview-container" style="display: none;">
+                <div class="mb-3" id="preview-container">
                     <p><strong>Selected New Image:</strong></p>
                     <img id="new-image-preview"
                          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
                          class="img-fluid"
-                         style="max-height: 200px; display:none;"
                          alt="Preview of selected image">
                 </div>
 
