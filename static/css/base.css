@@ -40,6 +40,10 @@ body {
     width: fit-content;
 }
 
+#green-jacket-logo {
+    height: 2.5rem;
+    margin-right: 0.625rem;
+}
 
 /* css for drop down menu tabs */
 /* Full reset for dropdown menu */

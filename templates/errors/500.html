@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %}500 Error{% endblock %}
+
+{% block content %}
+<div id="main-content" class="d-flex flex-column min-vh-100">
+  <div class="container flex-grow-1 d-flex align-items-center justify-content-center">
+    <div class="text-center home-title">
+      <h1 class="mb-3">Oops! Something Went Wrong (500)</h1>
+      <h5 class="tagline">It seems we’ve encountered an issue processing your request.</h5>
+      <p class="lead">
+        Don’t worry, our team is on it. In the meantime, you can browse our items below.
+      </p>
+      <div class="my-4">
+        <a href="{% url 'items' %}" class="shop-now-button btn btn-lg py-3">
+          Browse Our Items
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- footer will stay at bottom here -->
+</div>
+{% endblock %}

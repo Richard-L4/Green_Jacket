@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (openBtn && modal) {
         openBtn.addEventListener('click', function (e) {
             e.preventDefault();
-            modal.style.display = 'flex';  // Show the modal (flex container)
+            modal.style.display = 'flex'; // Show the modal (flex container)
         });
     }
 
@@ -58,9 +58,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     heartIcon.classList.replace('fas', 'far');
                     saveText.textContent = 'Save for Later';
                 }
-            })
-            .catch(error => {
-                console.error('Error submitting form:', error);
             });
         });
     }
@@ -92,15 +89,15 @@ document.addEventListener('DOMContentLoaded', function () {
             window.location = currentUrl.toString();
         });
 
-        // --- New Item Image Preview Handling ---
+        // --- jQuery New Item Image Preview Handling ---
         $('#new-image').change(function () {
             const file = this.files[0];
             if (file) {
                 const reader = new FileReader();
 
                 reader.onload = function (e) {
-                    $('#new-image-preview').attr('src', e.target.result);  // Set preview image src
-                    $('#preview-container').show();  // Show preview container
+                    $('#new-image-preview').attr('src', e.target.result); // Set preview image src
+                    $('#preview-container').show(); // Show preview container
                 };
 
                 reader.readAsDataURL(file);
@@ -113,7 +110,27 @@ document.addEventListener('DOMContentLoaded', function () {
                 $('#filename').text('');
             }
         });
-    } else {
-        console.warn('jQuery is not loaded. Sort and scroll features will not work.');
+    }
+
+    // --- Pure JS New Item Image Preview Handling ---
+    const newImageInput = document.getElementById('new-image');
+    if (newImageInput) {
+        newImageInput.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            const previewContainer = document.getElementById('preview-container');
+            const previewImage = document.getElementById('new-image-preview');
+            const filenameDisplay = document.getElementById('filename');
+
+            if (file) {
+                previewContainer.style.display = 'block';
+                previewImage.style.display = 'block';
+                previewImage.src = URL.createObjectURL(file);
+                filenameDisplay.textContent = `Selected File: ${file.name}`;
+            } else {
+                previewContainer.style.display = 'none';
+                previewImage.style.display = 'none';
+                filenameDisplay.textContent = '';
+            }
+        });
     }
 });

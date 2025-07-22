@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% comment %} Extra Title {% endcomment %}
+{% block extra_title %}404 Error{% endblock %}
+
+{% block content %}
+<div id="main-content" class="d-flex flex-column min-vh-100">
+  <div class="container flex-grow-1 d-flex align-items-center justify-content-center">
+    <div class="text-center home-title">
+      <h1 class="mb-3">Oops! Page Not Found (404)</h1>
+      <h5 class="tagline">It looks like this page doesn’t exist.</h5>
+      <p class="lead">But don’t worry, you can find our items below.</p>
+      <div class="my-4">
+        <a href="{% url 'items' %}" class="shop-now-button btn btn-lg py-3">
+          Browse Our Items
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- footer will stay at bottom here -->
+</div>
+{% endblock %}

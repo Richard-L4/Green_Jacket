@@ -2,82 +2,105 @@
 {% load static %}
 
 {% block page_header %}
-    <!-- Page Header Container -->
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+<!-- Page Header Container -->
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
     </div>
+</div>
 {% endblock %}
 
 {% block content %}
-    <!-- Page Overlay -->
-    <div class="overlay"></div>
+<!-- Page Overlay -->
+<div class="overlay"></div>
 
-    <!-- Main Container -->
-    <div class="container container-fluid min-vh-100 d-flex flex-column">
-        <div class="row">
-            <!-- Section Heading -->
-            <div class="col-12 col-md-6">
-                <hr>
-                <h2 class="logo-font mb-4">Item Management</h2>
-                <h5 class="text-muted">Edit an Item</h5>
-                <hr>
-            </div>
-        </div>
-
-        <!-- Form Row -->
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <!-- Item Edit Form -->
-                <form method="POST" action="{% url 'edit_item' item.id %}" class="form mb-2" enctype="multipart/form-data">
-                    {% csrf_token %}
-
-                    {% for field in form %}
-                        {% if field.name != 'image' %}
-                            {{ field|as_crispy_field }}
-                        {% else %}
-                            <!-- Existing Image Preview -->
-                            {% if item.featured_image %}
-                                <div class="mb-3">
-                                    <p><strong>Current Image:</strong></p>
-                                    <img id="current-image" src="{{ item.featured_image.url }}" alt="Current item image" class="img-fluid" style="max-height: 200px;">
-                                </div>
-                            {% endif %}
-
-                            <!-- New Image Upload Field -->
-                            <div class="form-group">
-                                <label for="new-image">Change Image</label>
-                                <input type="file" name="featured_image" class="form-control" id="new-image" accept="image/*">
-                            </div>
-
-                            <!-- New Image Preview Area (shows current image initially) -->
-                            <div class="mb-3" id="preview-container" style="display: none;">
-                                <p><strong>Selected New Image:</strong></p>
-                                <img id="new-image-preview" 
-                                     src="{% if item.featured_image %}{{ item.featured_image.url }}{% else %}{% static 'images/default.jpg' %}{% endif %}" 
-                                     class="img-fluid" 
-                                     style="max-height: 200px;" 
-                                     alt="Preview of selected image">
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-
-                    <!-- Area to show selected image filename via JS -->
-                    <p class="text-danger" id="filename"></p>
-
-                    <!-- Form Buttons -->
-                    <div class="text-right">
-                        <a class="btn btn-outline-black rounded-0" href="{% url 'items' %}">Cancel</a>
-                        <button class="btn btn-black rounded-0" type="submit">Update Item</button>
-                    </div>
-                </form>
-            </div>
+<!-- Main Container -->
+<div class="container container-fluid min-vh-100 d-flex flex-column">
+    <div class="row">
+        <!-- Section Heading -->
+        <div class="col-12 col-md-6">
+            <hr>
+            <h2 class="logo-font mb-4">Item Management</h2>
+            <h5 class="text-muted">Edit an Item</h5>
+            <hr>
         </div>
     </div>
+
+    <!-- Form Row -->
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <!-- Item Edit Form -->
+            <form method="POST" action="{% url 'edit_item' item.id %}" class="form mb-2" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <!-- Manually render all form fields except featured_image -->
+                {{ form.name|as_crispy_field }}
+                {{ form.description|as_crispy_field }}
+                {{ form.price|as_crispy_field }}
+                {{ form.category|as_crispy_field }}
+
+                <!-- Show current image if exists -->
+                {% if item.featured_image %}
+                <div class="mb-3">
+                    <p><strong>Current Image:</strong></p>
+                    <img id="current-image" src="{{ item.featured_image.url }}" alt="Current item image"
+                         class="img-fluid" style="max-height: 200px;">
+                </div>
+                {% endif %}
+
+                <!-- Button to select new image -->
+                <div class="form-group mt-3">
+                    <label for="new-image"><strong>Select New Image</strong></label>
+                    <input type="file" name="featured_image" class="form-control" id="new-image" accept="image/*">
+                </div>
+
+                <!-- New Image Preview -->
+                <div class="mb-3" id="preview-container" style="display: none;">
+                    <p><strong>Selected New Image:</strong></p>
+                    <img id="new-image-preview"
+                         src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+                         class="img-fluid"
+                         style="max-height: 200px; display:none;"
+                         alt="Preview of selected image">
+                </div>
+
+                <!-- Area to show selected image filename via JS -->
+                <p class="text-danger" id="filename"></p>
+
+                <!-- Form Buttons -->
+                <div class="text-right">
+                    <a class="btn btn-outline-black rounded-0" href="{% url 'items' %}">Cancel</a>
+                    <button class="btn btn-black rounded-0" type="submit">Update Item</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block postloadjs %}
-    {{ block.super }}
-    <script src="{% static 'JS/save-toggle-script.js' %}"></script>
+{{ block.super }}
+<script src="{% static 'JS/save-toggle-script.js' %}"></script>
+
+<!--<script>
+    // JS Preview Handler
+    document.getElementById('new-image').addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        const previewContainer = document.getElementById('preview-container');
+        const previewImage = document.getElementById('new-image-preview');
+        const filenameDisplay = document.getElementById('filename');
+
+        if (file) {
+            previewContainer.style.display = 'block';
+            previewImage.style.display = 'block';
+            previewImage.src = URL.createObjectURL(file);
+            filenameDisplay.textContent = `Selected File: ${file.name}`;
+        } else {
+            previewContainer.style.display = 'none';
+            previewImage.style.display = 'none';
+            filenameDisplay.textContent = '';
+        }
+    });
+</script>-->
+
 {% endblock %}
