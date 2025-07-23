@@ -29,7 +29,7 @@ I have used the recommended [HTML W3C Validator](https://validator.w3.org) to va
 | Checkout | ![screenshot](static/images/p4-checkout-html-val.png) | Pass: No Errors |
 | Checkout Success | ![screenshot](static/images/p4-checkout-success-html-val.png) | Pass: No Errors |
 | Email confirm | ![screenshot]() | Pass: No Errors |
-| Password Change | ![screenshot](static/images/forgot-password-val.png) | Pass: No Errors |
+| Password Change | ![screenshot](static/images/change-password-html-val.png) | Pass: No Errors |
 | Password Reset Done | ![screenshot](static/images/password-reset-done-val%20(2).png) | Pass: No Errors |
 | Password Reset From Key Done | ![screenshot]() | Pass: No Errors |
 | Password Reset From Key | ![screenshot]() | Pass: No Errors |
