@@ -1,23 +1,42 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% comment %} Extra Title {% endcomment %}
+{# 
+  Block to set the page title dynamically.
+  This will show "404 Error" in the browser tab or window title.
+#}
 {% block extra_title %}404 Error{% endblock %}
 
 {% block content %}
+<!-- Main content wrapper with flexbox to make the content take full viewport height and center vertically -->
 <div id="main-content" class="d-flex flex-column min-vh-100">
+
+  <!-- Container centered both vertically and horizontally using Bootstrap flex utilities -->
   <div class="container flex-grow-1 d-flex align-items-center justify-content-center">
+
+    <!-- Text section with centered alignment -->
     <div class="text-center home-title">
+
+      <!-- Main heading showing the 404 error message -->
       <h1 class="mb-3">Oops! Page Not Found (404)</h1>
+
+      <!-- Subheading explaining that the page doesn’t exist -->
       <h5 class="tagline">It looks like this page doesn’t exist.</h5>
+
+      <!-- Friendly message encouraging the user -->
       <p class="lead">But don’t worry, you can find our items below.</p>
+
+      <!-- Call-to-action button that links users back to the 'items' page -->
       <div class="my-4">
         <a href="{% url 'items' %}" class="shop-now-button btn btn-lg py-3">
           Browse Our Items
         </a>
       </div>
+
     </div>
   </div>
-  <!-- footer will stay at bottom here -->
+
+  {# Footer will remain at the bottom #}
+
 </div>
 {% endblock %}

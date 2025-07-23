@@ -1,24 +1,41 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{# Override the page title block to show "500 Error" in the browser tab #}
 {% block extra_title %}500 Error{% endblock %}
 
 {% block content %}
+<!-- Main container for the page content with flexbox to center content vertically -->
 <div id="main-content" class="d-flex flex-column min-vh-100">
+
+  <!-- Centered container to hold the error message, uses Bootstrap flex utilities -->
   <div class="container flex-grow-1 d-flex align-items-center justify-content-center">
+
+    <!-- Text container for the error message, centered -->
     <div class="text-center home-title">
+
+      <!-- Main error heading -->
       <h1 class="mb-3">Oops! Something Went Wrong (500)</h1>
+
+      <!-- Subheading/tagline providing more info -->
       <h5 class="tagline">It seems we’ve encountered an issue processing your request.</h5>
+
+      <!-- Short user-friendly explanation -->
       <p class="lead">
         Don’t worry, our team is on it. In the meantime, you can browse our items below.
       </p>
+
+      <!-- Call-to-action button linking users to browse available items -->
       <div class="my-4">
         <a href="{% url 'items' %}" class="shop-now-button btn btn-lg py-3">
           Browse Our Items
         </a>
       </div>
+
     </div>
   </div>
-  <!-- footer will stay at bottom here -->
+
+  <!-- Footer will stay at the bottom here if included in base.html -->
+
 </div>
 {% endblock %}

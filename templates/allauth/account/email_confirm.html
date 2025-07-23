@@ -1,9 +1,14 @@
 {% extends "account/base.html" %}
+{# This template inherits from the Allauth base template for account pages #}
 
 {% load i18n %}
+{# Load internationalization tags to enable translations using {% trans %} and {% blocktrans %} #}
+
 {% load account %}
+{# Load custom Allauth template tags, e.g., user_display #}
 
 {% block head_title %}{% trans "Confirm E-mail Address" %}{% endblock %}
+{# Sets the page title to "Confirm E-mail Address", translatable into other languages #}
 
 {% block inner_content %}
 <main class="container-fluid about">
@@ -14,30 +19,38 @@
     <hr>
 
     {% if confirmation %}
+    {# If a valid confirmation object exists (link is valid and not expired) #}
 
       {% user_display confirmation.email_address.user as user_display %}
+      {# Uses Allauth's user_display template tag to get a user-friendly display name for the user linked to the email #}
 
       <p>
         {% blocktrans with confirmation.email_address.email as email %}
           Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> 
           is an e-mail address for user {{ user_display }}.
         {% endblocktrans %}
+        {# Outputs a translatable sentence asking the user to confirm the email belongs to them #}
       </p>
 
       <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
         {% csrf_token %}
+        {# Security token to prevent CSRF attacks #}
         <button type="submit">{% trans 'Confirm' %}</button>
+        {# Button to submit the confirmation form #}
       </form>
 
     {% else %}
+    {# If no confirmation object exists (invalid or expired link) #}
 
       {% url 'account_email' as email_url %}
+      {# Creates a URL to the 'account_email' view and stores it in email_url #}
 
       <p>
         {% blocktrans %}
           This e-mail confirmation link expired or is invalid. 
           Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.
         {% endblocktrans %}
+        {# Displays a message prompting the user to request a new confirmation email #}
       </p>
 
     {% endif %}

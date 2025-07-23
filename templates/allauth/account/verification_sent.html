@@ -1,16 +1,24 @@
 {% extends "account/base.html" %}
+{# This template extends the base Allauth account template #}
+
 {% load static %}
+{# Load static files (e.g., images, CSS, JS) if needed in the template #}
+
 {% load i18n %}
+{# Load internationalization tags for translation support #}
 
 {% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
+{# Sets the HTML <title> of the page to "Verify Your E-mail Address" (translatable) #}
 
 {% block inner_content %}
 <main class="container-fluid about">
   <div class="form-box">
+    {# Wrapper container for styling, likely tied to your custom CSS classes #}
 
     <hr>
     <h2 class="logo-font mb-4">{% trans "Verify Your E-mail Address" %}</h2>
     <hr>
+    {# Page heading, translatable #}
 
     <p>
       {% blocktrans %}
@@ -18,8 +26,10 @@
         to finalize the signup process. Please contact us if you do not receive it 
         within a few minutes.
       {% endblocktrans %}
+      
     </p>
 
   </div>
 </main>
 {% endblock %}
+{# Ends the content block that is inserted into account/base.html #}

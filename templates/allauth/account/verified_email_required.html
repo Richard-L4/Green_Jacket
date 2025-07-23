@@ -1,18 +1,27 @@
 {% extends "account/base.html" %}
+{# Extends the base Allauth account template for consistent layout #}
+
 {% load static %}
+{# Loads the static template tag to serve static files like images, CSS, JS #}
+
 {% load i18n %}
+{# Loads internationalization tags to enable translations #}
 
 {% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
+{# Sets the <title> tag content for the page, translated for different languages #}
 
 {% block inner_content %}
 <main class="container-fluid about">
   <div class="form-box">
+    {# Container with styling classes for main form area #}
 
     <hr>
     <h2 class="logo-font mb-4">{% trans "Verify Your E-mail Address" %}</h2>
     <hr>
+    {# Page heading, translatable #}
 
     {% url 'account_email' as email_url %}
+    {# Generates URL for 'account_email' view and stores it in 'email_url' variable #}
 
     <p>
       {% blocktrans %}
@@ -20,6 +29,7 @@
         you are who you claim to be. For this purpose, we require that you
         verify ownership of your e-mail address.
       {% endblocktrans %}
+      {# Explains why email verification is required (translatable) #}
     </p>
 
     <p>
@@ -28,6 +38,7 @@
         Please click on the link inside this e-mail. Please
         contact us if you do not receive it within a few minutes.
       {% endblocktrans %}
+      {# Tells user to check their email and what to do if not received #}
     </p>
 
     <p>
@@ -35,8 +46,10 @@
         <strong>Note:</strong> you can still 
         <a href="{{ email_url }}">change your e-mail address</a>.
       {% endblocktrans %}
+      {# Provides a link for user to change their email if needed #}
     </p>
 
   </div>
 </main>
 {% endblock %}
+{# Ends the inner_content block which fills the main content area in base.html #}
