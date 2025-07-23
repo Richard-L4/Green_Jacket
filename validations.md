@@ -10,29 +10,31 @@ I have used the recommended [HTML W3C Validator](https://validator.w3.org) to va
 
 | Page | Screenshot | Notes |
 | --- | --- | --- |
-| Home/Index | ![screenshot]() | Pass: No Errors |
-| Items | ![screenshot]() | Pass: No Errors |
-| Trolley | ![screenshot]() | Pass: No Errors |
-| Who We Are | ![screenshot]() | Pass: No Errors |
-| Profile | ![screenshot]() | Pass: No Errors |
-| Register | ![screenshot]() | Pass: No Errors |
-| Login | ![screenshot]() | Pass: No Errors |
-| Item Details | ![screenshot]() | Pass: No Errors |
-| Edit Review | ![screenshot]() | Pass: No Errors |
-| Delete Review | ![screenshot]() | Pass: No Errors |
-| Edit Profile | ![screenshot]() | Pass: No Errors |
-| Delete Profile | ![screenshot]() | Pass: No Errors |
-| Order Details | ![screenshot]() | Pass: No Errors |
-| Logout | ![screenshot]() | Pass: No Errors |
-| Checkout | ![screenshot]() | Pass: No Errors |
-| Checkout Success | ![screenshot]() | Pass: No Errors |
+| Home/Index | ![screenshot](static/images/p4-home-html-val.png) | Pass: No Errors |
+| Items | ![screenshot](static/images/p4-items-html-val.png) | Pass: No Errors |
+| Items Edit Review| ![screenshot](static/images/p4-edit-review-html-val.png) | Pass: No Errors |
+| Items Delete Review| ![screenshot](static/images/p4-delete-review-html-val.png) | Pass: No Errors |
+| Items Edit Item| ![screenshot](static/images/p4-edit-item-html-val.png) | Pass: No Errors |
+| Items Delete Item| ![screenshot](static/images/p4-delete-item-html-val.png) | Pass: No Errors |
+| Items Add Item| ![screenshot](static/images/p4-add-item-html-val.png) | Pass: No Errors |
+| Trolley | ![screenshot](static/images/p4-trolley-html-val.png) | Pass: No Errors |
+| Who We Are | ![screenshot](static/images/who-we-are-html-val.png) | Pass: No Errors |
+| Profile | ![screenshot](static/images/p4-profile-html-val.png) | Pass: No Errors |
+| Register | ![screenshot](static/images/p4-register-html-val.png) | Pass: No Errors |
+| Login | ![screenshot](static/images/p4-login-html-val.png) | Pass: No Errors |
+| Item Details | ![screenshot](static/images/p4-item-details-html-val.png) | Pass: No Errors |
+| Edit Review | ![screenshot](static/images/p4-edit-review-html-val.png) | Pass: No Errors |
+| Delete Review | ![screenshot](static/images/p4-delete-review-html-val.png) | Pass: No Errors |
+| Logout | ![screenshot](static/images/p4-logout-html-val.png) | Pass: No Errors |
+| Checkout | ![screenshot](static/images/p4-checkout-html-val.png) | Pass: No Errors |
+| Checkout Success | ![screenshot](static/images/p4-checkout-success-html-val.png) | Pass: No Errors |
 | Email confirm | ![screenshot]() | Pass: No Errors |
-| Password Change | ![screenshot]() | Pass: No Errors |
-| Password Reset Done | ![screenshot]() | Pass: No Errors |
+| Password Change | ![screenshot](static/images/forgot-password-val.png) | Pass: No Errors |
+| Password Reset Done | ![screenshot](static/images/password-reset-done-val%20(2).png) | Pass: No Errors |
 | Password Reset From Key Done | ![screenshot]() | Pass: No Errors |
 | Password Reset From Key | ![screenshot]() | Pass: No Errors |
-| Password Reset | ![screenshot]() | Pass: No Errors |
-| Verification Sent | ![screenshot]() | Pass: No Errors |
+| Password Reset | ![screenshot](static/images/forgot-password-val.png) | Pass: No Errors |
+| Verification Sent | ![screenshot](static/images/verify-email-val.png) | Pass: No Errors |
 
 
 ### CSS
@@ -41,9 +43,8 @@ I have used the recommended [CSS Jigsaw Validator](https://jigsaw.w3.org/css-val
 
 | File | Screenshot | Notes |
 | --- | --- | --- |
-| style.css | ![screenshot]() | Pass: No Errors |
-| checkout.css | ![screenshot]() | Pass: No Errors |
-| order_details.css | ![screenshot]() | Pass: No Errors |
+| base.css | ![screenshot](static/images/p4-basecss.val.png) | Pass: No Errors |
+| checkout.css | ![screenshot](static/images/p4-checkout-css-val.png) | Pass: No Errors |
 
 
 ### JavaScript
@@ -52,9 +53,9 @@ I have used the recommended [JShint Validator](https://jshint.com) to validate a
 
 | File | Screenshot | Notes |
 | --- | --- | --- |
-| stripe_elements.js | ![screenshot]() | Pass: No Errors |
-| save-toggle-script.js | ![screenshot]() | Pass: No Errors |
-| quantity.js | ![screenshot]() | Pass: No Errors |
+| stripe_elements.js | ![screenshot](static/images/js-hint-stripe-elements.png) | Pass: No Errors |
+| save-toggle-script.js | ![screenshot](static/images/js-hint-save-toggle.png) | Pass: No Errors |
+| quantity-input.js | ![screenshot](static/images/js-hint-quantity-input.png) | Pass: No Errors |
 
 ### Python
 
