@@ -8,7 +8,7 @@
 {# Sets the page title to "Account" with translation support #}
 
 {% block inner_content %}
-<main class="container-fluid about">
+<main class="container-fluid about min-vh-100 d-flex flex-column justify-content-center align-items-center">
   <div class="form-box">
 
     <hr>
@@ -33,7 +33,7 @@
                        type="radio" 
                        name="email" 
                        {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked"{% endif %} 
-                       value="{{ emailaddress.email }}"/>
+                       value="{{ emailaddress.email }}">
                 {# Radio button for selecting the email address #}
 
                 {{ emailaddress.email }}
