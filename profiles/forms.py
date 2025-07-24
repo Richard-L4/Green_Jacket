@@ -51,7 +51,8 @@ class UserProfileForm(forms.ModelForm):
                 field.widget.attrs['placeholder'] = placeholder
 
             # Add CSS classes for styling all fields uniformly
-            field.widget.attrs['class'] = 'border-black rounded-0 profile-form-input'
+            field.widget.attrs['class'] = \
+                'border-black rounded-0 profile-form-input'
 
             # Remove field labels since placeholders are used
             field.label = False
