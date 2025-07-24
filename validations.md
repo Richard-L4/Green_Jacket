@@ -65,52 +65,60 @@ I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com
 #### Validation For Green_Jacket App
 | File | Screenshot | Notes |
 | --- | --- | --- |
-| settings.py | ![screenshot]() | AUTH_PASSWORD_VALIDATORS lines too long (django code) |
-| urls.py | ![screenshot]() | Pass: No Errors |
+| settings.py | ![screenshot](static/images/p4-Py-greenjacket-settings.png) | Pass: No Errors |
+| asgi.py | ![screenshot](static/images/p4-Py-greenjacket-asgi.png) | Pass: No Errors |
+| urls.py | ![screenshot](static/images/p4-Py-greenjacket-urls.png) | Pass: No Errors |
+| views.py | ![screenshot](static/images/p4-Py-greenjacket-views.png) | Pass: No Errors |
+| wsgi.py | ![screenshot](static/images/p4-Py-greenjacket-wsgi.png) | Pass: No Errors |
 
 #### Validation For Checkout App
 | File | Screenshot | Notes |
 | --- | --- | --- |
-| init.py | ![screenshot]() | Pass: No Errors |
-| admin.py | ![screenshot]() | Pass: No Errors |
-| apps.py | ![screenshot]() | Pass: No Errors |
-| forms.py | ![screenshot]() | Pass: No Errors |
-| models.py | ![screenshot]() | Pass: No Errors |
-| signals.py | ![screenshot]() | Pass: No Errors |
-| urls.py | ![screenshot]() | Pass: No Errors |
-| views.py | ![screenshot]() | Pass: No Errors |
-| webhook_handler.py | ![screenshot]() | Pass: No Errors |
-| webhooks.py | ![screenshot]() | Pass: No Errors |
+| admin.py | ![screenshot](static/images/p4-Py-ck-admin.png) | Pass: No Errors |
+| apps.py | ![screenshot](static/images/p4-Py-ck-apps.png) | Pass: No Errors |
+| forms.py | ![screenshot](static/images/p4-Py-ck-forms.png) | Pass: No Errors |
+| models.py | ![screenshot](static/images/p4-Py-ck-models.png) | Pass: No Errors |
+| signals.py | ![screenshot](static/images/p4-Py-ck-signals.png) | Pass: No Errors |
+| urls.py | ![screenshot](static/images/p4-Py-ck-urls.png) | Pass: No Errors |
+| views.py | ![screenshot](static/images/p4-Py-ck-views.png) | Pass: No Errors |
+| webhook_handler.py | ![screenshot](static/images/p4-Py-ck-webhook-handler.png) | Pass: No Errors |
+| webhooks.py | ![screenshot](static/images/p4-Py-ck-webhooks.png) | Pass: No Errors |
 
-#### Validation For Accounts App
+#### Validation For Clubhouse App
 | File | Screenshot | Notes |
 | --- | --- | --- |
-| forms.py | ![screenshot]() | Pass: No Errors |
-| urls.py | ![screenshot]() | Pass: No Errors |
-| views.py | ![screenshot]() | Pass: No Errors |
-
-#### Validation For Core App
-| File | Screenshot | Notes |
-| --- | --- | --- |
-| admin.py | ![screenshot]() | Pass: No Errors |
-| apps.py | ![screenshot]() | Pass: No Errors |
-| forms.py | ![screenshot]() | Pass: No Errors |
-| models.py | ![screenshot]() | Pass: No Errors |
-| urls.py | ![screenshot]() | Pass: No Errors |
-| views.py | ![screenshot]() | Pass: No Errors |
+| apps.py | ![screenshot](static/images/p4-Py-clubhouse-apps.png) | Pass: No Errors |
+| urls.py | ![screenshot](static/images/p4-Py-clubhouse-urls.png) | Pass: No Errors |
+| views.py | ![screenshot](static/images/p4-Py-clubhouse-views.png) | Pass: No Errors |
 
 #### Validation For Items App
 | File | Screenshot | Notes |
 | --- | --- | --- |
-| trolley_tags.py | ![screenshot]() | Pass: No Errors |
-| item_tags.py | ![screenshot]() | Pass: No Errors |
-| admin.py | ![screenshot]() | Pass: No Errors |
-| apps.py | ![screenshot]() | Pass: No Errors |
-| context_processors.py | ![screenshot]() | Pass: No Errors |
-| forms.py | ![screenshot]() | Pass: No Errors |
-| models.py | ![screenshot]() | Pass: No Errors |
-| urls.py | ![screenshot]() | Pass: No Errors |
-| views.py | ![screenshot]() | Pass: No Errors |
+| admin.py | ![screenshot](static/images/p4-Py-items-apps.png) | Pass: No Errors |
+| apps.py | ![screenshot](static/images/p4-Py-items-apps.png) | Pass: No Errors |
+| forms.py | ![screenshot](static/images/p4-Py-items-forms.png) | Pass: No Errors |
+| models.py | ![screenshot](static/images/p4-Py-items-models.png) | Pass: No Errors |
+| urls.py | ![screenshot](static/images/p4-Py-items-urls.png) | Pass: No Errors |
+| views.py | ![screenshot](static/images/p4-Py-items-views.png) | Pass: No Errors |
+| widgets.py | ![screenshot](static/images/p4-Py-items-widgets.png) | Pass: No Errors |
+
+#### Validation For Profiles App
+| File | Screenshot | Notes |
+| --- | --- | --- |
+| apps.py | ![screenshot](static/images/p4-Py-profiles-apps.png) | Pass: No Errors |
+| forms.py | ![screenshot](static/images/p4-Py-profiles-forms.png) | Pass: No Errors |
+| models.py | ![screenshot](static/images/p4-Py-profiles-models.png) | Pass: No Errors |
+| urls.py | ![screenshot](static/images/p4-Py-profiles-urls.png) | Pass: No Errors |
+| views.py | ![screenshot](static/images/p4-Py-profiles-views.png) | Pass: No Errors |
+
+#### Validation For Trolley App
+| File | Screenshot | Notes |
+| --- | --- | --- |
+| trolley_tools.py | ![screenshot](static/images/p4-Py-trolley-temptags-tools.png) | Pass: No Errors |
+| apps.py | ![screenshot](static/images/p4-Py-trolley-apps.png) | Pass: No Errors |
+| context.py | ![screenshot](static/images/p4-Py-trolley-contexts.png) | Pass: No Errors |
+| urls.py | ![screenshot](static/images/p4-Py-trolley-urls.png) | Pass: No Errors |
+| views.py | ![screenshot](static/images/p4-Py-trolley-views.png) | Pass: No Errors |
 
 ## Browser Compatibility
 
