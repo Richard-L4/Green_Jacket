@@ -74,6 +74,7 @@ I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com
 #### Validation For Checkout App
 | File | Screenshot | Notes |
 | --- | --- | --- |
+| in_it.py | ![screenshot](static/images/p4_py-checkout-in_it.png) | Pass: No Errors |
 | admin.py | ![screenshot](static/images/p4-Py-ck-admin.png) | Pass: No Errors |
 | apps.py | ![screenshot](static/images/p4-Py-ck-apps.png) | Pass: No Errors |
 | forms.py | ![screenshot](static/images/p4-Py-ck-forms.png) | Pass: No Errors |
@@ -126,8 +127,8 @@ I've tested my deployed project on multiple browsers to check for compatibility 
 
 | Browser | Screenshot | Notes |
 | --- | --- | --- |
-| Chrome | ![screenshot]() | Works as expected |
-| Firefox | ![screenshot]() | Works as expected |
+| Chrome | ![screenshot](static/images/p4-chrome.png) | Works as expected |
+| Firefox | ![screenshot](static/images/p4-firefox.png) | Works as expected |
 
 ## Responsiveness
 
@@ -135,9 +136,8 @@ I've tested my deployed project on multiple devices to check for responsiveness 
 
 | Device | Screenshot | Notes |
 | --- | --- | --- |
-| Mobile (DevTools) | ![screenshot]() | Works as expected |
-| Tablet (DevTools) | ![screenshot]() | Works as expected |
-| Desktop | ![screenshot]() | Works as expected |
+| Mobile (DevTools) | ![screenshot](static/images/p4-mobile.png) | Works as expected |
+| Tablet (DevTools) | ![screenshot](static/images/p4-tablet.png) | Works as expected |
 
 ## Lighthouse Audit
 
@@ -146,24 +146,31 @@ I've tested my deployed project using the Lighthouse Audit tool to check for any
 ### Green_Jacket Templates - Mobile Testing
 | Page | Size | Screenshot | Notes |
 | --- | --- | --- | --- |
-| Home/Index | mobile | ![screenshot]() |  |
-| Items | mobile | ![screenshot]() |  |
-| Who We Are | mobile | ![screenshot]() |  |
-| Contact | mobile | ![screenshot]() |  |
-| Profile | mobile | ![screenshot]() |  |
-| Register | mobile | ![screenshot]() |  |
-| Login | mobile | ![screenshot]() |  |
-| Item Details | mobile | ![screenshot]() |  |
-| Edit Review | mobile | ![screenshot]() |  |
-| Delete Review | mobile | ![screenshot]() |  |
-| Edit Profile | mobile | ![screenshot]() |  |
-| Order Details | mobile | ![screenshot]() |  |
-| Logout | mobile | ![screenshot]() |  |
-| Trolley | mobile | ![screenshot]() |  |
-| Checkout | mobile | ![screenshot]() |  |
-| Checkout Success | mobile | ![screenshot]() |  |
-| Email confirm | mobile | ![screenshot]() |  |
-| Verification Sent | mobile | ![screenshot]() |  |
-| Verified Email Required | mobile | ![screenshot]() |  |
+| Home/Index | mobile | ![screenshot](static/images/p4-home-lh.png) |  |
+| Items | mobile | ![screenshot](static/images/p4-items-lh.png) |  |
+| Item Details | mobile | ![screenshot](static/images/p4-item-detail-lh.png) |  |
+| Item Image | mobile | ![screenshot](static/images/p4-item-image-lh.png) |  |
+| Items Leave Review | mobile | ![screenshot](static/images/p4-leave-review-lh.png) |  |
+| Items Edit Review | mobile | ![screenshot](static/images/p4-edit-review-lh.png) |  |
+| Items Delete Review| mobile | ![screenshot](static/images/p4-delete-review-lh.png) |  |
+| Items Edit Item| mobile | ![screenshot](static/images/p4-edit-item-lh.png) |  |
+| Items Delete Item | mobile | ![screenshot](static/images/p4-delete-item-lh.png) |  |
+| Items Add Item | mobile | ![screenshot](static/images/p4-add-item-lh.png) |  |
+| Who We Are | mobile | ![screenshot](static/images/p4-who-we-lh.png) |  |
+| Profile | mobile | ![screenshot](static/images/p4-profile-lh.png) |  |
+| Register | mobile | ![screenshot](static/images/p4-register-lh.png) |  |
+| Login | mobile | ![screenshot](static/images/p4-login-lh.png) |  |
+| Edit Profile | mobile | ![screenshot](static/images/p4-profile-lh.png) |  |
+| Logout | mobile | ![screenshot](static/images/p4-logout-lh.png) |  |
+| Trolley | mobile | ![screenshot](static/images/p4-trolley-lh.png) |  |
+| Checkout | mobile | ![screenshot](static/images/p4-checkout-lh.png) |  |
+| Checkout Success | mobile | ![screenshot](static/images/p4-checkout-scuccess-lh.png) |  |
+| Email confirm | mobile | ![screenshot](static/images/p4-confirm-email-lh.png) |  |
+| Verification Sent | mobile | ![screenshot](static/images/p4-verify-email-lh.png) |  |
+| Password Reset | mobile | ![screenshot](static/images/p4-passwd-email-sent-lh.png) |  |
+| Passeword Change| mobile | ![screenshot](static/images/p4-pass-reset-lh.png) |  |
+| Password Confirm Change | mobile | ![screenshot](static/images/p4-pswd-change-confirm-lh.png) |  |
+| 404 | mobile | ![screenshot](static/images/p4-404-lh.png) |  |
+| Bad Token (from_key_token) | mobile | ![screenshot](static/images/p4-bad-token-lh.png) |  |
 
 [Back to Top](#top)
