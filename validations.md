@@ -12,6 +12,9 @@ I have used the recommended [HTML W3C Validator](https://validator.w3.org) to va
 | --- | --- | --- |
 | Home/Index | ![screenshot](static/images/p4-home-html-val.png) | Pass: No Errors |
 | Items | ![screenshot](static/images/p4-items-html-val.png) | Pass: No Errors |
+| Item Details | ![screenshot](static/images/p4-item-details-html-val.png) | Pass: No Errors |
+| Items Image | ![screenshot](static/images/p4-item-image-html-val.png) | Pass: No Errors |
+| Items Leave Review | ![screenshot](static/images/p4-leave-review-html-val.png) | Pass: No Errors |
 | Items Edit Review| ![screenshot](static/images/p4-edit-review-html-val.png) | Pass: No Errors |
 | Items Delete Review| ![screenshot](static/images/p4-delete-review-html-val.png) | Pass: No Errors |
 | Items Edit Item| ![screenshot](static/images/p4-edit-item-html-val.png) | Pass: No Errors |
@@ -22,9 +25,6 @@ I have used the recommended [HTML W3C Validator](https://validator.w3.org) to va
 | Profile | ![screenshot](static/images/p4-profile-html-val.png) | Pass: No Errors |
 | Register | ![screenshot](static/images/p4-register-html-val.png) | Pass: No Errors |
 | Login | ![screenshot](static/images/p4-login-html-val.png) | Pass: No Errors |
-| Item Details | ![screenshot](static/images/p4-item-details-html-val.png) | Pass: No Errors |
-| Edit Review | ![screenshot](static/images/p4-edit-review-html-val.png) | Pass: No Errors |
-| Delete Review | ![screenshot](static/images/p4-delete-review-html-val.png) | Pass: No Errors |
 | Logout | ![screenshot](static/images/p4-logout-html-val.png) | Pass: No Errors |
 | Checkout | ![screenshot](static/images/p4-checkout-html-val.png) | Pass: No Errors |
 | Checkout Success | ![screenshot](static/images/p4-checkout-success-html-val.png) | Pass: No Errors |
