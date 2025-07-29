@@ -165,8 +165,8 @@ body {
 /* For no-hover elements — bigger shadow always, NO hover effect */
 
 .no-hover.hover-shadow {
-  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.50); /* bigger shadow by default */
-  transition: none !important;                        /* disable transition */
+  box-shadow:  0 0.75rem 1.5rem rgba(0, 0, 0, 0.50);  /* bigger shadow by default */
+  transition:  none !important;                       /* disable transition      */
 }
 
 .no-hover.hover-shadow:hover {
@@ -304,6 +304,7 @@ body {
   color: #333;                                  /* dark text */
   text-align: center;                             /* center text */
 }
+
 
 #delete-page form button,
 #delete-page form a {
