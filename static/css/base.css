@@ -295,7 +295,7 @@ body {
 
 #delete-box {
   background-color: #f9f9f9;                    /* light gray background */
-  border: 2px solid #084998;                    /* blue border */
+  border: 0.125rem solid #084998;               /* blue border */
   border-radius: 0.5rem;                          /* rounded corners */
   padding: 2rem;                                  /* spacing inside */
   max-width: 37.5rem;                             /* width limit */
@@ -357,7 +357,7 @@ body {
 }
 
 #new-image-preview {
-    max-height: 200px;
+    max-height: 12.5rem;
     display: none;
 }
 
@@ -499,8 +499,8 @@ input[name='q']::placeholder {
 
 .message-container {
     position: fixed;
-    top: 72px;
-    right: 15px;
+    top: 4.5rem;
+    right: 0.9375rem;
     z-index: 99999999999;
 }
 
@@ -509,7 +509,7 @@ input[name='q']::placeholder {
 }
 
 .toast-capper {
-    height: 2px;
+    height: 0.125rem;
 }
 
 /* from CSS-tricks.com: https://css-tricks.com/snippets/css/css-triangle/ */
@@ -517,12 +517,12 @@ input[name='q']::placeholder {
 .arrow-up {
     width: 0; 
     height: 0; 
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent; 
-    border-bottom: 10px solid black;
+    border-left: 0.25rem solid transparent;
+    border-right: 0.25rem solid transparent; 
+    border-bottom: 0.625rem solid black;
     position: absolute;
-    top: -10px;
-    right: 36px;
+    top: -0.625rem;
+    right: 2.25rem;
 }
 
 /* Convenience classes - colors copied from Bootstrap */
@@ -560,7 +560,7 @@ input[name='q']::placeholder {
 }
 
 .bag-notification-wrapper {
-    height: 100px;
+    height: 6.25rem;
     overflow-x: hidden;
     overflow-y: auto;
 }
