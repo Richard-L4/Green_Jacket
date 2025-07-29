@@ -305,7 +305,6 @@ body {
   text-align: center;                             /* center text */
 }
 
-
 #delete-page form button,
 #delete-page form a {
   padding: 0.5rem 1.5rem;
@@ -376,7 +375,6 @@ body {
   width: 90%; /* Slightly smaller than 100% for mobile screens */
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
 }
-
 
 /* to keep the item name on one line in item deletion box */
 
