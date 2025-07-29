@@ -25,16 +25,18 @@ body {
     font-weight: bold;
     color: #006400; /* Dark green */
 }
+
 /* to change the color of the text in the banner */
+
 .free-shipping-text {
   color: white;
 }
 
 /* change the depth of the banner */
+
 #delivery-banner .col {
   padding: 0.0625rem 0; /* 20px top and bottom padding */
 }
-
 
 .main-logo-link {
     width: fit-content;
@@ -47,6 +49,7 @@ body {
 
 /* css for drop down menu tabs */
 /* Full reset for dropdown menu */
+
 .dropdown-menu {
     padding: 0 !important;
     margin: 0 !important;
@@ -57,6 +60,7 @@ body {
 }
 
 /* Tighten individual dropdown items */
+
 .dropdown-menu .dropdown-item {
     padding: 0.5rem 1rem !important; /* restore consistent spacing */
     margin: 0 !important;
@@ -67,13 +71,13 @@ body {
 }
 
 /* Hover styles */
+
 .dropdown-menu .dropdown-item:hover,
 .dropdown-menu .dropdown-item:focus {
     background-color: white !important;
     color: black !important;
     border: none !important;
 }
-
 
 .home-title {
     background:  #3b4f68;
@@ -83,7 +87,6 @@ body {
     text-align: center;
     margin-bottom: 1.5rem; /* optional spacing from next element */
 }
-
 
 .shop-now-button {
     background: #3b4f68;
@@ -131,24 +134,25 @@ body {
     background:  #3b4f68 !important;
 }
 
-
 /* who we are page to push footer down */
+
 .about {
     min-height: 100vh;
     padding-top: 9.375rem;
 }
 
 /* style for google maps */
+
 #google-map {
     width: 100%;
     border: 0;
 }
 
-
 /* custom hover for itmes page */
+
 .hover-shadow {
   transition: all 0.3s ease-in-out;
-  border-radius: 0.5rem; /* add rounded corners */
+  border-radius: 0.5rem;            /* add rounded corners */
   box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.35);
   border: 0.125rem solid #3b4f68; /* strong black border */
 }
@@ -159,9 +163,10 @@ body {
 }
 
 /* For no-hover elements — bigger shadow always, NO hover effect */
+
 .no-hover.hover-shadow {
   box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.50); /* bigger shadow by default */
-  transition: none !important; /* disable transition */
+  transition: none !important;                        /* disable transition */
 }
 
 .no-hover.hover-shadow:hover {
@@ -169,24 +174,18 @@ body {
   transform: none !important; /* disable scale */
 }
 
-
 .table-bordered thead.thead-dark th {
     border-color: #3b4f68 !important;
 }
-
 
 .no-border {
     border: none !important;
     box-shadow: none !important;
 }
 
-
-
 .checkout-buttons-wrapper {
     margin-top: 5rem;
 }
-
-
 
 #about-page {
   min-height: 100vh;
@@ -281,7 +280,6 @@ body {
    background-color: #084998 !important;
 }
 
-
 #delete-page {
   min-height: 100vh;
   display: flex;
@@ -295,20 +293,17 @@ body {
   padding-left: 1.25rem;
 }
 
-
 #delete-box {
-  background-color: #f9f9f9;      /* light gray background */
-  border: 2px solid #084998;      /* blue border */
-  border-radius: 0.5rem;             /* rounded corners */
-  padding: 2rem;                  /* spacing inside */
-  max-width: 37.5rem;               /* width limit */
-  margin: 2rem auto;              /* center horizontally with margin */
+  background-color: #f9f9f9;                    /* light gray background */
+  border: 2px solid #084998;                    /* blue border */
+  border-radius: 0.5rem;                          /* rounded corners */
+  padding: 2rem;                                  /* spacing inside */
+  max-width: 37.5rem;                             /* width limit */
+  margin: 2rem auto;                              /* center horizontally with margin */
   box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1); /* subtle shadow */
-  color: #333;                   /* dark text */
-  text-align: center;            /* center text */
+  color: #333;                                  /* dark text */
+  text-align: center;                             /* center text */
 }
-
-
 
 #delete-page form button,
 #delete-page form a {
@@ -352,6 +347,7 @@ body {
 }
 
 /* style for current image of edit item */
+
 #current-image {
     max-height: 12.5rem;
 }
@@ -365,31 +361,36 @@ body {
     display: none;
 }
 
-
-
 #item-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: #1e2a38;
   color: white;
   border: 0.125rem solid #084998;
   border-radius: 0.5rem;
   padding: 2rem;
   max-width: 37.5rem;
-  width: 100%;
-  box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.2);
+  width: 90%; /* Slightly smaller than 100% for mobile screens */
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
 }
 
+
 /* to keep the item name on one line in item deletion box */
+
 .no-wrap {
   white-space: nowrap;
 }
 
 /* ID styling to keep back to clubhouse tab on small screens to left in line with other tabs */
+
 #back-to-main {
     padding-left: 0;
 }
 
-
 /*  custom button style for leave a review */
+
 a.btn.custom {
     color: #fff !important;
     background-color: #3b4f68 !important;
@@ -400,7 +401,6 @@ a.btn.custom:hover {
     background-color: #811c7a !important;
     border-color: #811c7a !important;
 }
-
 
 .overlay {
 	height: 100%;
@@ -436,6 +436,7 @@ input[name='q']::placeholder {
 }
 
 /* Modal backdrop covering the page */
+
 .custom-modal-backdrop {
   position: fixed;
   top: 0;
@@ -447,12 +448,12 @@ input[name='q']::placeholder {
   align-items: center;
   justify-content: center;
   z-index: 1050;
-  padding: 1rem; /* Adds breathing room on smaller screens */
+  padding: 1rem;                          /* Adds breathing room on smaller screens */
   box-sizing: border-box;
 }
 
-
 /* Centered modal box */
+
 .custom-modal-form {
   position: relative;
   background: white;
@@ -473,12 +474,13 @@ input[name='q']::placeholder {
 }
 
 /* Pushes the footer to the bottom of review html */
+
 #main-content {
-  padding-top: 10.25rem;  /* push below navbar */
+  padding-top: 10.25rem;              /* push below navbar */
   min-height: calc(100vh - 5.625rem); /* full viewport minus footer */
   display: flex;
-  justify-content: center;  /* horizontal center */
-  align-items: center;      /* vertical center */
+  justify-content: center;            /* horizontal center */
+  align-items: center;                /* vertical center */
   box-sizing: border-box;
   padding-bottom: 1rem;
   text-align: center;
@@ -492,7 +494,6 @@ input[name='q']::placeholder {
   max-width: 31.25rem;
   width: 100%;
 }
-
 
 /* ------------------------------- bootstrap toasts */
 
@@ -512,6 +513,7 @@ input[name='q']::placeholder {
 }
 
 /* from CSS-tricks.com: https://css-tricks.com/snippets/css/css-triangle/ */
+
 .arrow-up {
     width: 0; 
     height: 0; 
@@ -524,6 +526,7 @@ input[name='q']::placeholder {
 }
 
 /* Convenience classes - colors copied from Bootstrap */
+
 .arrow-primary {
     border-bottom-color: #007bff !important;
 }
@@ -562,13 +565,20 @@ input[name='q']::placeholder {
     overflow-y: auto;
 }
 
-
-
 /* -------------------------------- Media Queries */
 
 
+/* Media query for small screens */
+
+@media (max-width: 576px) {
+  #item-box {
+    top: 66%;
+  }
+}
+
 /* Slightly larger container on xl screens */
 /* Between 974px and 1199px */
+
 @media (min-width: 974px) and (max-width: 1199px) {
   .container {
     max-width: 80%;
@@ -580,6 +590,7 @@ input[name='q']::placeholder {
 }
 
 /* From 1200px and above */
+
 @media (min-width: 1200px) {
   .container {
     max-width: 80%;
@@ -591,12 +602,11 @@ input[name='q']::placeholder {
   }
 }
 
-
 /* Allauth form formatting */
 
 .allauth-form-inner-content p {
     margin-top: 1.5rem; /* mt-4 */
-    color: #6c757d; /* text-secondary */
+    color: #6c757d;   /* text-secondary */
 }
 
 .allauth-form-inner-content input {
@@ -687,9 +697,7 @@ input[name='q']::placeholder {
     align-items: center;
 }
 
-
 /* Form content box styling */
-
 
 .form-box {
   background-color: white;
@@ -707,8 +715,8 @@ input[name='q']::placeholder {
   margin-right: auto;
 }
 
-
 /* Footer styling */
+
 footer {
     background: #3b4f68;
     /* Let the body background show through */
@@ -717,7 +725,6 @@ footer {
     text-align: center;
     height: 5.625rem;
 }
-
 
 #social-networks {
     text-align: center;
@@ -735,6 +742,7 @@ footer {
 }
 
 /* Specific platform colors */
+
 #social-networks .facebook i {
     color: white;
     /* Facebook blue */
@@ -755,8 +763,8 @@ footer {
     /* Instagram orange */
 }
 
-
 /* fixed top navbar only on medium and up */
+
 @media (min-width: 992px) {
     .fixed-top-desktop-only {
         position: fixed;
@@ -772,6 +780,7 @@ footer {
 }
 
 /* pad the top a bit when navbar is collapsed on mobile & logout page footer */
+
 @media (max-width: 991px) {
     .header-container {
         padding-top: 7.25rem;

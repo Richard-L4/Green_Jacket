@@ -1,3 +1,14 @@
+/*
+    Core logic/payment flow for this comes from:
+    https://stripe.com/docs/payments/accept-a-payment
+
+    CSS from:
+    https://stripe.com/docs/stripe-js
+
+    Note: Using JSON.parse() avoids null/undefined issues from jQuery
+    and ensures the keys are valid strings for Stripe.
+*/
+
 var stripePublicKey = JSON.parse(document.getElementById('id_stripe_public_key').textContent);
 var clientSecret = JSON.parse(document.getElementById('id_client_secret').textContent);
 
