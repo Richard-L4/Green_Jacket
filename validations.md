@@ -44,7 +44,7 @@ I have used the recommended [CSS Jigsaw Validator](https://jigsaw.w3.org/css-val
 
 | File | Screenshot | Notes |
 | --- | --- | --- |
-| base.css | ![screenshot](static/images/base.css-val.png) | Pass: No Errors |
+| base.css | ![screenshot](static/images/base.css-val2.png) | Pass: No Errors |
 | checkout.css | ![screenshot](static/images/p4-checkout-css-val.png) | Pass: No Errors |
 
 
