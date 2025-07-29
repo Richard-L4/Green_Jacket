@@ -83,7 +83,7 @@ body {
     background:  #3b4f68;
     color: white;
     min-width: 16.25rem;
-    padding: 1.5rem; /* similar to .py-3 in Bootstrap */
+    padding: 1.5rem;       /* similar to .py-3 in Bootstrap */
     text-align: center;
     margin-bottom: 1.5rem; /* optional spacing from next element */
 }
