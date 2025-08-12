@@ -10,9 +10,9 @@ I have used the recommended [HTML W3C Validator](https://validator.w3.org) to va
 
 | Page | Screenshot | Notes |
 | --- | --- | --- |
-| Home/Index | ![screenshot](static/images/p4-home-html-val.png) | Pass: No Errors |
+| Home/Index | ![screenshot](static/images/p4-base-html-val.png) | Pass: No Errors |
 | Items | ![screenshot](static/images/p4-items-html-val.png) | Pass: No Errors |
-| Item Details | ![screenshot](static/images/p4-item-details-html-val.png) | Pass: No Errors |
+| Item Details | ![screenshot](static/images/p4-item-detail-html-val.png) | Pass: No Errors |
 | Items Image | ![screenshot](static/images/p4-item-image-html-val.png) | Pass: No Errors |
 | Items Leave Review | ![screenshot](static/images/p4-leave-review-html-val.png) | Pass: No Errors |
 | Items Edit Review| ![screenshot](static/images/p4-edit-review-html-val.png) | Pass: No Errors |
@@ -100,7 +100,7 @@ I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com
 | forms.py | ![screenshot](static/images/p4-Py-items-forms.png) | Pass: No Errors |
 | models.py | ![screenshot](static/images/p4-Py-items-models.png) | Pass: No Errors |
 | urls.py | ![screenshot](static/images/p4-Py-items-urls.png) | Pass: No Errors |
-| views.py | ![screenshot](static/images/p4-Py-items-views.png) | Pass: No Errors |
+| views.py | ![screenshot](static/images/p4-item-view-val.png) | Pass: No Errors |
 | widgets.py | ![screenshot](static/images/p4-Py-items-widgets.png) | Pass: No Errors |
 
 #### Validation For Profiles App
