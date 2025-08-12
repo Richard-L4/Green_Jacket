@@ -116,7 +116,7 @@ def item_image(request, pk):
 @staff_member_required
 def add_item(request):
     """
-    View to allow users to add a new item.
+    View to allow admin users to add a new item.
     """
 
     if request.method == 'POST':
@@ -139,7 +139,7 @@ def add_item(request):
 @staff_member_required
 def edit_item(request, item_id):
     """
-    View to edit an existing item.
+    View for admin user to edit an existing item.
     """
     item = get_object_or_404(Item, pk=item_id)
 
@@ -161,7 +161,7 @@ def edit_item(request, item_id):
 @staff_member_required
 def delete_item(request, pk):
     """
-    View to delete an item after confirmation.
+    View for admin user to delete an item after confirmation.
     """
     item = get_object_or_404(Item, pk=pk)
     if request.method == "POST":
