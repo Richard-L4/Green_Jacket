@@ -116,11 +116,8 @@ def item_image(request, pk):
 @staff_member_required
 def add_item(request):
     """
-    View to allow superusers to add a new item.
+    View to allow users to add a new item.
     """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
 
     if request.method == 'POST':
         form = ItemForm(request.POST, request.FILES)

@@ -48,7 +48,7 @@
                 {% endif %}
 
                 {# Admin Edit/Delete Buttons #}
-                {% if request.user.is_superuser %}
+                {% if request.user.is_staff %}
                 <small class="ml-3">
                     <a href="{% url 'edit_item' item.id %}" class="btn btn-sm btn-primary mr-2">Edit</a>
                     <a href="{% url 'delete_item' item.id %}" class="btn btn-sm btn-danger">Delete</a>
